@@ -54,102 +54,6 @@
         "influxdbVersion": "1.x"
     },
     {
-        "id": "32085e1e.4b1322",
-        "type": "ui_base",
-        "theme": {
-            "name": "theme-light",
-            "lightTheme": {
-                "default": "#0094CE",
-                "baseColor": "#0094CE",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
-                "reset": false
-            },
-            "darkTheme": {
-                "default": "#097479",
-                "baseColor": "#097479",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
-            },
-            "customTheme": {
-                "name": "Untitled Theme 1",
-                "default": "#4B7930",
-                "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-            },
-            "themeState": {
-                "base-color": {
-                    "default": "#0094CE",
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-backgroundColor": {
-                    "value": "#fafafa",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#1bbfff",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "widget-textColor": {
-                    "value": "#111111",
-                    "edited": false
-                },
-                "widget-backgroundColor": {
-                    "value": "#0094ce",
-                    "edited": false
-                },
-                "widget-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "base-font": {
-                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-                }
-            },
-            "angularTheme": {
-                "primary": "indigo",
-                "accents": "blue",
-                "warn": "red",
-                "background": "grey"
-            }
-        },
-        "site": {
-            "name": "IE Flow Creator Dashboard",
-            "hideToolbar": "false",
-            "allowSwipe": "false",
-            "lockMenu": "false",
-            "allowTempTheme": "true",
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
-    },
-    {
         "id": "10fe46ae.b68fd9",
         "type": "comment",
         "z": "9c7c99c7.995708",
@@ -900,8 +804,8 @@
             "cd77a88a.279978",
             "fcb0f940.8676b8"
         ],
-        "x": 1335,
-        "y": 400,
+        "x": 1215,
+        "y": 480,
         "wires": []
     },
     {
@@ -973,13 +877,13 @@
         "id": "e53d0b46.b00cf8",
         "type": "function",
         "z": "36f57d21.a8d9a2",
-        "name": "Configuration Mapping",
+        "name": "",
         "func": "var id2NameMap = global.get(\"id2NameMap\")\nvar id2DataTypeMap = global.get(\"id2DataTypeMap\")\n\nif(id2NameMap == undefined || id2DataTypeMap == undefined ){\n    id2NameMap = new Map(); \n    id2DataTypeMap = new Map(); \n}\n\nlet connectionName = \"FA_Drives\"; // Name of the connection\n\n\nlet m = JSON.parse(msg.payload);\n\n\n// Mapping ID -> Variable Name\n// Mapping ID -> Variable Data Type\nm.connections.forEach(connection => \n{\n    if(connection.name == connectionName) {\n        let datapointobjects = connection.dataPoints;\n        \n        datapointobjects.forEach( datapoint => {\n            datapoint.dataPointDefinitions.forEach( definition => {\n                id2NameMap.set(definition.id, definition.name) // Mapping ID -> Variable Name\n                id2DataTypeMap.set(definition.id, definition.dataType) // Mapping ID -> Variable Data Type \n            })\n           \n        })\n    }\n    \n})\n\nglobal.set(\"id2NameMap\", id2NameMap)\nglobal.set(\"id2DataTypeMap\", id2DataTypeMap)\n\nmsg.payload = id2NameMap\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 540,
+        "x": 500,
         "y": 140,
         "wires": [
             [
@@ -999,7 +903,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 790,
+        "x": 750,
         "y": 100,
         "wires": []
     },
@@ -1036,14 +940,14 @@
         "influxdb": "3e6912e1.eda84e",
         "precision": "",
         "retentionPolicy": "",
-        "name": "write_data_to_influxdb",
+        "name": "",
         "database": "database",
         "precisionV18FluxV20": "ms",
         "retentionPolicyV18Flux": "",
         "org": "organisation",
         "bucket": "bucket",
-        "x": 1020,
-        "y": 340,
+        "x": 1040,
+        "y": 360,
         "wires": []
     },
     {
@@ -1106,8 +1010,8 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 1000,
-        "y": 400,
+        "x": 910,
+        "y": 480,
         "wires": [
             [
                 "bc1f14ce.454208"
@@ -1124,8 +1028,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1200,
-        "y": 400,
+        "x": 1100,
+        "y": 480,
         "wires": [
             [
                 "36f30d2b.de5d52"
