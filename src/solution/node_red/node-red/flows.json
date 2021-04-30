@@ -21,6 +21,102 @@
         "info": ""
     },
     {
+        "id": "61b74b3d.7a1df4",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "IE Flow Creator Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
         "id": "b6ec4c8d.61eac",
         "type": "mqtt-broker",
         "name": "",
@@ -50,161 +146,8 @@
         "database": "edgedb",
         "name": "",
         "usetls": false,
-        "tls": ""
-    },
-    {
-        "id": "bf61343e.6896e",
-        "type": "influxdb",
-        "hostname": "172.17.0.3",
-        "port": "8086",
-        "protocol": "http",
-        "database": "Acq",
-        "name": "",
-        "usetls": false,
-        "tls": ""
-    },
-    {
-        "id": "b20126b5.cd4d98",
-        "type": "influxdb",
-        "hostname": "172.17.0.3",
-        "port": "8086",
-        "protocol": "http",
-        "database": "acq",
-        "name": "",
-        "usetls": false,
-        "tls": ""
-    },
-    {
-        "id": "1033e65b.c34c7a",
-        "type": "influxdb",
-        "hostname": "172.17.0.3",
-        "port": "8086",
-        "protocol": "http",
-        "database": "acq",
-        "name": "",
-        "usetls": false,
-        "tls": ""
-    },
-    {
-        "id": "a1739b94.b791a",
-        "type": "influxdb",
-        "hostname": "influx",
-        "port": "8086",
-        "protocol": "http",
-        "database": "Acq",
-        "name": "",
-        "usetls": false,
-        "tls": ""
-    },
-    {
-        "id": "1b18f9c7.36eaa6",
-        "type": "influxdb",
-        "hostname": "172.17.0.3",
-        "port": "8086",
-        "protocol": "http",
-        "database": "Acq",
-        "name": "",
-        "usetls": false,
-        "tls": ""
-    },
-    {
-        "id": "b58c5579.e8ca9",
-        "type": "influxdb",
-        "hostname": "172.17.0.3",
-        "port": "8086",
-        "protocol": "http",
-        "database": "acq",
-        "name": "",
-        "usetls": false,
-        "tls": ""
-    },
-    {
-        "id": "595cb22b.a38a4c",
-        "type": "influxdb",
-        "hostname": "172.17.0.3",
-        "port": "8086",
-        "protocol": "http",
-        "database": "acq",
-        "name": "",
-        "usetls": false,
-        "tls": ""
-    },
-    {
-        "id": "c6c8a0f8.e93ed8",
-        "type": "influxdb",
-        "hostname": "172.17.0.3",
-        "port": "8086",
-        "protocol": "http",
-        "database": "Acq",
-        "name": "",
-        "usetls": false,
-        "tls": ""
-    },
-    {
-        "id": "47bb686a.34cec8",
-        "type": "influxdb",
-        "hostname": "172.17.0.3",
-        "port": "8086",
-        "protocol": "http",
-        "database": "acq",
-        "name": "",
-        "usetls": false,
-        "tls": ""
-    },
-    {
-        "id": "f097c695.91eca",
-        "type": "influxdb",
-        "hostname": "172.17.0.3",
-        "port": "8086",
-        "protocol": "http",
-        "database": "acq",
-        "name": "",
-        "usetls": false,
-        "tls": ""
-    },
-    {
-        "id": "759b2bda.123094",
-        "type": "influxdb",
-        "hostname": "influx",
-        "port": "8086",
-        "protocol": "http",
-        "database": "Acq",
-        "name": "",
-        "usetls": false,
-        "tls": ""
-    },
-    {
-        "id": "95300d7d.e193e8",
-        "type": "influxdb",
-        "hostname": "172.17.0.3",
-        "port": "8086",
-        "protocol": "http",
-        "database": "Acq",
-        "name": "",
-        "usetls": false,
-        "tls": ""
-    },
-    {
-        "id": "3490c91a.7dcf46",
-        "type": "influxdb",
-        "hostname": "172.17.0.3",
-        "port": "8086",
-        "protocol": "http",
-        "database": "acq",
-        "name": "",
-        "usetls": false,
-        "tls": ""
-    },
-    {
-        "id": "647d1416.81c4f4",
-        "type": "influxdb",
-        "hostname": "172.17.0.3",
-        "port": "8086",
-        "protocol": "http",
-        "database": "acq",
-        "name": "",
-        "usetls": false,
-        "tls": ""
+        "tls": "",
+        "influxdbVersion": "1.x"
     },
     {
         "id": "4462f599.69bb0c",
@@ -339,7 +282,7 @@
         "name": "### Generate dummy data  and storage in influxdb ###",
         "info": "",
         "x": 320,
-        "y": 700,
+        "y": 80,
         "wires": []
     },
     {
@@ -970,7 +913,7 @@
         "payload": "20",
         "payloadType": "num",
         "x": 250,
-        "y": 940,
+        "y": 320,
         "wires": [
             [
                 "925a5c7.deaec2",
@@ -989,7 +932,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 540,
-        "y": 860,
+        "y": 240,
         "wires": [
             [
                 "bdcb1de8.cd129",
@@ -1007,7 +950,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 540,
-        "y": 920,
+        "y": 300,
         "wires": [
             [
                 "ef28ccb6.75c6e",
@@ -1027,7 +970,7 @@
         "initialize": "",
         "finalize": "",
         "x": 540,
-        "y": 980,
+        "y": 360,
         "wires": [
             [
                 "6a295d91.59ab5c",
@@ -1047,7 +990,7 @@
         "initialize": "",
         "finalize": "",
         "x": 540,
-        "y": 1040,
+        "y": 420,
         "wires": [
             [
                 "6a295d91.59ab5c",
@@ -1065,7 +1008,7 @@
         "retentionPolicy": "",
         "name": "write_data_influxdb",
         "x": 990,
-        "y": 940,
+        "y": 320,
         "wires": []
     },
     {
@@ -1078,7 +1021,7 @@
             "554edde8.db9efc"
         ],
         "x": 915,
-        "y": 1100,
+        "y": 480,
         "wires": []
     },
     {
@@ -1093,7 +1036,7 @@
         "complete": "payload",
         "targetType": "msg",
         "x": 1010,
-        "y": 860,
+        "y": 240,
         "wires": []
     },
     {
@@ -1108,7 +1051,7 @@
         "complete": "payload",
         "targetType": "msg",
         "x": 1010,
-        "y": 900,
+        "y": 280,
         "wires": []
     },
     {
@@ -1125,7 +1068,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1010,
-        "y": 1000,
+        "y": 380,
         "wires": []
     },
     {
@@ -1142,7 +1085,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1010,
-        "y": 1040,
+        "y": 420,
         "wires": []
     },
     {
