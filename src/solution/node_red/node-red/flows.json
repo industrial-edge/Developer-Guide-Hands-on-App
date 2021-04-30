@@ -21,102 +21,6 @@
         "info": ""
     },
     {
-        "id": "61b74b3d.7a1df4",
-        "type": "ui_base",
-        "theme": {
-            "name": "theme-light",
-            "lightTheme": {
-                "default": "#0094CE",
-                "baseColor": "#0094CE",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
-                "reset": false
-            },
-            "darkTheme": {
-                "default": "#097479",
-                "baseColor": "#097479",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
-            },
-            "customTheme": {
-                "name": "Untitled Theme 1",
-                "default": "#4B7930",
-                "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-            },
-            "themeState": {
-                "base-color": {
-                    "default": "#0094CE",
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-backgroundColor": {
-                    "value": "#fafafa",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#1bbfff",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "widget-textColor": {
-                    "value": "#111111",
-                    "edited": false
-                },
-                "widget-backgroundColor": {
-                    "value": "#0094ce",
-                    "edited": false
-                },
-                "widget-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "base-font": {
-                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-                }
-            },
-            "angularTheme": {
-                "primary": "indigo",
-                "accents": "blue",
-                "warn": "red",
-                "background": "grey"
-            }
-        },
-        "site": {
-            "name": "IE Flow Creator Dashboard",
-            "hideToolbar": "false",
-            "allowSwipe": "false",
-            "lockMenu": "false",
-            "allowTempTheme": "true",
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
-    },
-    {
         "id": "b6ec4c8d.61eac",
         "type": "mqtt-broker",
         "name": "",
@@ -146,8 +50,7 @@
         "database": "edgedb",
         "name": "",
         "usetls": false,
-        "tls": "",
-        "influxdbVersion": "1.x"
+        "tls": ""
     },
     {
         "id": "4462f599.69bb0c",
@@ -281,7 +184,7 @@
         "z": "803455e.14d3d28",
         "name": "### Generate dummy data  and storage in influxdb ###",
         "info": "",
-        "x": 320,
+        "x": 300,
         "y": 80,
         "wires": []
     },
@@ -741,6 +644,23 @@
         ]
     },
     {
+        "id": "49c977da.a0dce",
+        "type": "mqtt in",
+        "z": "f7e739bb.370638",
+        "name": "",
+        "topic": "StandardKpiResult",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b6ec4c8d.61eac",
+        "x": 130,
+        "y": 820,
+        "wires": [
+            [
+                "b119df7b.43a088"
+            ]
+        ]
+    },
+    {
         "id": "f85bea86.d12e9",
         "type": "debug",
         "z": "f7e739bb.370638",
@@ -912,7 +832,7 @@
         "topic": "samples_number_n",
         "payload": "20",
         "payloadType": "num",
-        "x": 250,
+        "x": 230,
         "y": 320,
         "wires": [
             [
@@ -931,7 +851,7 @@
         "func": "if (msg!==null)\n{\nmean = msg.payload;\n    Beta = [{\n\n        measurement: \"powerdrive1\",\n        fields:{\n            name: \"powerdrive1\",\n            value:(Math.random() * (999.0 - 750.0 + 1) + 750.0),\n            qualitycode: false\n            //weitereTags: -100 //(optional) nur 4 Datatypes sind in der Influxdb akzeptiert: Int,Float,String, Bool\n        },\n        timestamp: new Date()\n    }]\n//    Arr.push(Beta);\n//}\n\nmsg.payload = Beta;\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 540,
+        "x": 520,
         "y": 240,
         "wires": [
             [
@@ -949,7 +869,7 @@
         "func": "if (msg!==null)\n{\nmean = msg.payload;\n    Beta = [{\n//values between 800 and 999 Watt\n        measurement: \"powerdrive2\",\n        fields:{\n            name: \"powerdrive2\",\n            value:(Math.random() * (999.0 - 800.0 + 1) + 800.0),\n            qualitycode: false\n            //weitereTags: -100 //(optional) nur 4 Datatypes sind in der Influxdb akzeptiert: Int,Float,String, Bool\n        },\n        timestamp: new Date()\n    }]\n//    Arr.push(Beta);\n//}\n\nmsg.payload = Beta;\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 540,
+        "x": 520,
         "y": 300,
         "wires": [
             [
@@ -969,7 +889,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 540,
+        "x": 520,
         "y": 360,
         "wires": [
             [
@@ -989,7 +909,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 540,
+        "x": 520,
         "y": 420,
         "wires": [
             [
@@ -1007,7 +927,7 @@
         "precision": "",
         "retentionPolicy": "",
         "name": "write_data_influxdb",
-        "x": 990,
+        "x": 970,
         "y": 320,
         "wires": []
     },
@@ -1020,7 +940,7 @@
             "84d99c19.67892",
             "554edde8.db9efc"
         ],
-        "x": 915,
+        "x": 895,
         "y": 480,
         "wires": []
     },
@@ -1035,7 +955,7 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 1010,
+        "x": 990,
         "y": 240,
         "wires": []
     },
@@ -1050,7 +970,7 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 1010,
+        "x": 990,
         "y": 280,
         "wires": []
     },
@@ -1067,7 +987,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1010,
+        "x": 990,
         "y": 380,
         "wires": []
     },
@@ -1084,25 +1004,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1010,
+        "x": 990,
         "y": 420,
         "wires": []
-    },
-    {
-        "id": "49c977da.a0dce",
-        "type": "mqtt in",
-        "z": "f7e739bb.370638",
-        "name": "",
-        "topic": "StandardKpiResult",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "b6ec4c8d.61eac",
-        "x": 130,
-        "y": 820,
-        "wires": [
-            [
-                "b119df7b.43a088"
-            ]
-        ]
     }
 ]
