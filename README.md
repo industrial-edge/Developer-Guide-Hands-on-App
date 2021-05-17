@@ -9,7 +9,7 @@ Creating a first Industrial Edge App on a development environment to deploy it t
 
 ## Prerequisites
 
-The Prerequisites are the App Developer Guide which is available on [SIOS](https://support.industry.siemens.com/cs/ww/en/view/109795865). It contains description of the requirements as well as the step-by-step description of the distributed content in this repository.
+Prerequisites are in the App Developer Guide which is available on [SIOS](https://support.industry.siemens.com/cs/ww/en/view/109795865). It contains description of the requirements as well as the step-by-step description how to work with this Developer Guide repository.
 
 ## Description
 
