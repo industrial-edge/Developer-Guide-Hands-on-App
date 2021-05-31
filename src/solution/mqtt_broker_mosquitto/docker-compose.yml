@@ -8,7 +8,7 @@ services:
 
     mqtt-broker:
       image: eclipse-mosquitto:$MQTT_VERSION  # define image to pull from docker hub if not already on your machine available
-      container_name: ie_databus              # Name of MQTT broker container
+      container_name: ie-databus              # Name of MQTT broker container
       restart: unless-stopped                 # always restarts (see overview page 12 Industrial Edge Developer Guide)
       logging:                                # allow logging
         options:                              # we use best pactice here as limiting file size and rolling mechanism
