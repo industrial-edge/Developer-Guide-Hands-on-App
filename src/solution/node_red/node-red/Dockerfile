@@ -1,4 +1,4 @@
-ARG NODE_VERSION=9
+ARG NODE_VERSION=14
 FROM node:${NODE_VERSION}
 
 # Home directory for Node-RED application source code.
@@ -13,9 +13,9 @@ WORKDIR /usr/src/node-red
 
 # package.json contains Node-RED NPM module and node dependencies
 COPY package.json /usr/src/node-red/
-COPY flows.json /data
-COPY flows_cred.json /data
-COPY settings.js /data
+COPY flows.json /data/flows.json
+COPY flows_cred.json /data/flows_cred.json
+COPY settings.js /data/settings.js
 
 RUN npm install
 

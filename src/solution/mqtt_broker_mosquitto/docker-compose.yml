@@ -14,6 +14,8 @@ services:
         options:                              # we use best pactice here as limiting file size and rolling mechanism
           max-size: "10m"                     # File size is 10MB
           max-file: "2"                       # only 2 files created before rolling mechanism applies
+      volumes:                                # mount volume from host
+        - mosquitto:/mosquitto:ro             # set to read-only volume
       ports:                                  # expose of ports and publish
         - "33083:1883"                        # map containers default MQTT port (1883) to host's port 33083
       networks:                               # define networks connected to container 'mqtt-broker' 
@@ -25,3 +27,7 @@ networks:                           # Network interface configuration
     external:                       # Note: Please create the network manually as it is preexisting on Industrial Edge Device
       name: proxy-redirect
     driver: bridge
+
+###### VOLUMES ######
+volumes:                            # Volumes for containers
+  mosquitto:

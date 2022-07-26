@@ -1,6 +1,6 @@
 {
     "name": "node-red-docker",
-    "version": "1.0.0",
+    "version": "2.2.2",
     "description": "A visual tool for wiring the Internet of Things",
     "homepage": "http://nodered.org",
     "license": "Apache-2.0",
@@ -13,15 +13,10 @@
         "start": "node $NODE_OPTIONS node_modules/node-red/red.js -v $FLOWS"
     },
     "dependencies": {
-        "node-red": "1.2.8",
-        "node-red-node-email": "1.7.0",
-        "node-red-contrib-mytimeout": "3.0.1",
-        "node-red-contrib-advance-logger": "1.0.2",
-        "node-red-contrib-wfwatch": "*",
-        "node-red-contrib-zip": "1.0.0",
-        "node-red-contrib-influxdb": "~0.4.0"
+        "node-red": "2.2.2",
+        "node-red-contrib-influxdb": "0.6.1"
     },
     "engines": {
-        "node": "4.*.*"
+        "node": ">=12"
     }
 }

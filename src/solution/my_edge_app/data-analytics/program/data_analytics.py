@@ -58,6 +58,7 @@ class DataAnalyzer():
         # print(message.payload)
         # load = message.payload
         new_msg = json.loads(message.payload)
+        self.logger.info('new message: {}'.format(new_msg))
         try:
             self.topic_callback[message.topic](new_msg)
         except Exception as err:
@@ -75,13 +76,15 @@ class DataAnalyzer():
 
     # Callback function for MQTT topic 'StandardKpis'
     def standard_kpis(self, payload):
-        values = [key['value'] for key in payload]
+        values = [key['_value'] for key in payload]
+        name = [key['_measurement'] for key in payload]
+        self.logger.info('name is: {}'.format(name))
         # Calculate standard KPIs
         result = {
             'mean_result' : statistics.mean(values),
             'median_result' : statistics.median(values),
             'stddev_result' : statistics.stdev(values),
-            'name' : payload[0]['name'],
+            'name' : payload[0]['_measurement'],
         }
         self.logger.info('mean calculated: {}'.format(statistics.mean(values)))
         self.logger.info('median calculated: {}'.format(statistics.median(values)))
@@ -94,8 +97,8 @@ class DataAnalyzer():
     def power_mean(self, payload):
         self.logger.info('calculating power mean...')
 
-        current_values = [item['value'] for item in payload['current_drive3_batch']]
-        voltage_values = [item['value'] for item in payload['voltage_drive3_batch']]     
+        current_values = [item['_value'] for item in payload['current_drive3_batch']]
+        voltage_values = [item['_value'] for item in payload['voltage_drive3_batch']]     
         # Calculate mean of power 
         power_batch_sum = sum([current*voltage for current, voltage in zip(current_values,voltage_values)])
         

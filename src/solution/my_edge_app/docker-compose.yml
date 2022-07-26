@@ -33,26 +33,32 @@ services:
       - grafana                         # Wait for start of container 'grafana'
 
 ##### INFLUXDB ######
+  init-db:
+    image: init-db:v0.0.1               # Docker Init Container to Setup the Main InfluxDB v2.2 Container
+    depends_on:
+      influxdb:
+        condition: service_healthy
+    networks:                           # define networks connected to container 'influxdb' 
+      proxy-redirect:                   # Name of the network
+
   influxdb:
-    image: influxdb:$INFLUXDB_VERSION   # Define image to pull from docker hub if not already on your machine available
+    image: influxdb:2.2-alpine          # Define image to pull from docker hub if not already on your machine available
     container_name: influxdb            # Name of the influx-db container
     restart: unless-stopped             # always restarts (see overview page 12 Industrial Edge Developer Guide) 
-    mem_limit: 1400m
-    environment:                        # Environment variables available at container run-time
-      INFLUXDB_DB: $INFLUXDB_DB         # Variable of INFLUXDB_DB will be set at runtime as well
-      INFLUXDB_DATA_INDEX_VERSION: $INFLUXDB_DATA_INDEX_VERSION
+    mem_limit: 350m
     logging:                            # allow logging
       options:                          # we use best pactice here as limiting file size and rolling mechanism
         max-size: "10m"                 # File size is 10MB
         max-file: "2"                   # only 2 files created before rolling mechanism applies
+      driver: json-file  
+    ports:                              # expose of ports and publish
+      - "8086:8086"                     # map containers port 8086 to host's port 8086    
     volumes:                            # mount volume from host
       - db-backup:/var/lib/influxdb     # mount named volume 'db-backup' to host's path to /var/lib/influxdb
-    ports:                              # expose of ports and publish
-      - "33086:8086"                    # map containers port 8086 to host's port 33086
+    healthcheck:
+      test: "exit 0"
     networks:                           # define networks connected to container 'influxdb' 
       proxy-redirect:                   # Name of the network
-
-
 
 ##### GRAFANA #####
   grafana:                              
@@ -76,6 +82,8 @@ services:
         max-file: "2"                                 # only 2 files created before rolling mechanism applies
     ports:                                            # expose of ports and publish
       - "3000:3000"                                   # map containers port 3000 to host's port 3000
+    cap_drop:                                         # Drop all linux capabilities
+      - ALL   
     networks:                                         # define networks connected to container 'grafana' 
       proxy-redirect:                                 # Name of the network
 
