@@ -1,6 +1,8 @@
 #!/bin/bash -x
 set -e
 
+# Load secrets from various management sources 
+# Use them to configure the influxdb database
 
 DOCKER_INFLUXDB_INIT_MODE=${DOCKER_INFLUXDB_INIT_MODE}
 DOCKER_INFLUXDB_INIT_USERNAME=${DOCKER_INFLUXDB_INIT_USERNAME}
