@@ -1,0 +1,1408 @@
+[
+    {
+        "id": "d2cff17a64c3bbb0",
+        "type": "tab",
+        "label": "Data Collection",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f79577f76849fdce",
+        "type": "tab",
+        "label": "KPI-Calc-Dummy",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "672246f388b5a27f",
+        "type": "tab",
+        "label": "KPI Estimation",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b6ec4c8d.61eac",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt-broker",
+        "port": "1883",
+        "clientid": "nodered-client",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "4ad3ce8d.582c5",
+        "type": "influxdb",
+        "hostname": "influxdb",
+        "port": "8086",
+        "protocol": "http",
+        "database": "edgedb",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://influxdb:8086",
+        "rejectUnauthorized": false
+    },
+    {
+        "id": "6c545ec46d6ceb97",
+        "type": "influxdb",
+        "hostname": "dsa-ts-influxdb-baseapp",
+        "port": "8086",
+        "protocol": "http",
+        "database": "spindledb",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "",
+        "rejectUnauthorized": false
+    },
+    {
+        "id": "fa15ab7f44c6e79c",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "testing",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "363d6335f2a170ea",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "dsa-communication",
+        "port": "1883",
+        "clientid": "nodered-client",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "0bca33e1dda19ec5",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "dsa-communication",
+        "port": "1883",
+        "clientid": "nodered-client",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "7e5694c9d8ab873f",
+        "type": "mqtt-broker",
+        "name": "Databus",
+        "broker": "ie-databus",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "compatmode": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "16ea5a70c2987fbb",
+        "type": "influxdb",
+        "hostname": "influxdb",
+        "port": "8086",
+        "protocol": "http",
+        "database": "edgedb",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "",
+        "rejectUnauthorized": false
+    },
+    {
+        "id": "7d53b0b5f20bde7a",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "IE Flow Creator Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD.MM.YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "bb74cfc9308e4701",
+        "type": "OpcUa-Endpoint",
+        "d": true,
+        "endpoint": "opc.tcp://opc-server:4841",
+        "secpol": "Basic256",
+        "secmode": "SIGN",
+        "login": true
+    },
+    {
+        "id": "7ade5b0b23c34a61",
+        "type": "OpcUa-Endpoint",
+        "d": true,
+        "endpoint": "opc.tcp://ServiceName:Port",
+        "secpol": "None",
+        "secmode": "NONE",
+        "login": false
+    },
+    {
+        "id": "0e6399bafe50f24f",
+        "type": "OpcUa-Endpoint",
+        "d": true,
+        "endpoint": "opc.tcp://opc-server:4841",
+        "secpol": "Basic256",
+        "secmode": "SIGN",
+        "login": true
+    },
+    {
+        "id": "606ebcb3915e0ae3",
+        "type": "OpcUa-Endpoint",
+        "d": true,
+        "endpoint": "opc.tcp://ServiceName:Port",
+        "secpol": "None",
+        "secmode": "NONE",
+        "login": false
+    },
+    {
+        "id": "952591f0608d69b6",
+        "type": "comment",
+        "z": "d2cff17a64c3bbb0",
+        "name": "### Generate dummy data  and storage in influxdb ###",
+        "info": "",
+        "x": 300,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "55c22270f8872dc8",
+        "type": "inject",
+        "z": "d2cff17a64c3bbb0",
+        "name": "n-samples",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "samples_number_n",
+        "payload": "20",
+        "payloadType": "num",
+        "x": 230,
+        "y": 320,
+        "wires": [
+            [
+                "e2703ef9df4c1664",
+                "aa4c9019811919e8",
+                "c865315ba2c30758",
+                "2014876833d2d90d"
+            ]
+        ]
+    },
+    {
+        "id": "2014876833d2d90d",
+        "type": "function",
+        "z": "d2cff17a64c3bbb0",
+        "name": "Write_KPI_PowerDrive1_Influxdb",
+        "func": "if (msg!==null)\n{\nmean = msg.payload;\n    Beta = [{\n\n        measurement: \"powerdrive1\",\n        fields:{\n            name: \"powerdrive1\",\n            value:(Math.random() * (999.0 - 750.0 + 1) + 750.0),\n            qualitycode: false\n            //weitereTags: -100 //(optional) nur 4 Datatypes sind in der Influxdb akzeptiert: Int,Float,String, Bool\n        },\n        timestamp: new Date()\n    }]\n//    Arr.push(Beta);\n//}\n\nmsg.payload = Beta;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 520,
+        "y": 240,
+        "wires": [
+            [
+                "879b1c8370bda6bf",
+                "84d640378f6ced6b",
+                "d10f640d09c93dec"
+            ]
+        ]
+    },
+    {
+        "id": "e2703ef9df4c1664",
+        "type": "function",
+        "z": "d2cff17a64c3bbb0",
+        "name": "Write_KPI_PowerDrive2_Influxdb",
+        "func": "if (msg!==null)\n{\nmean = msg.payload;\n    Beta = [{\n//values between 800 and 999 Watt\n        measurement: \"powerdrive2\",\n        fields:{\n            name: \"powerdrive2\",\n            value:(Math.random() * (999.0 - 800.0 + 1) + 800.0),\n            qualitycode: false\n            //weitereTags: -100 //(optional) nur 4 Datatypes sind in der Influxdb akzeptiert: Int,Float,String, Bool\n        },\n        timestamp: new Date()\n    }]\n//    Arr.push(Beta);\n//}\n\nmsg.payload = Beta;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 520,
+        "y": 300,
+        "wires": [
+            [
+                "0043cfb5c478df93",
+                "84d640378f6ced6b",
+                "d10f640d09c93dec"
+            ]
+        ]
+    },
+    {
+        "id": "aa4c9019811919e8",
+        "type": "function",
+        "z": "d2cff17a64c3bbb0",
+        "name": "Write_KPI_VoltageDrive3_Influxdb",
+        "func": "if (msg!==null)\n{\nmean = msg.payload;\n    Beta = [{\n//values between 48 and 50 Volt\n        measurement: \"voltagedrive3\",\n        fields:{\n            name: \"voltagedrive3\",\n            value:(Math.random() * (50.0 - 48.0) + 48.0),\n            qualitycode: false\n            \n        },\n        ttimestamp: new Date()\n    }]\n//    Arr.push(Beta);\n//}\n\nmsg.payload = Beta;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 360,
+        "wires": [
+            [
+                "84d640378f6ced6b",
+                "3758c0fa9fe66552",
+                "d10f640d09c93dec"
+            ]
+        ]
+    },
+    {
+        "id": "c865315ba2c30758",
+        "type": "function",
+        "z": "d2cff17a64c3bbb0",
+        "name": "Write_KPI_CurrentDrive3_Influxdb",
+        "func": "if (msg!==null)\n{\nmean = msg.payload;\n    Beta = [{\n//values between 18 and 20 Ampere\n        measurement: \"currentdrive3\",\n        fields:{\n            name: \"currentdrive3\",\n            value:(Math.random() * (20.0 - 18.0) + 18.0),\n            qualitycode: false\n            \n        },\n        timestamp: new Date()\n    }]\n//    Arr.push(Beta);\n//}\n\nmsg.payload = Beta;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 420,
+        "wires": [
+            [
+                "84d640378f6ced6b",
+                "deaaf0c6847ce488",
+                "d10f640d09c93dec"
+            ]
+        ]
+    },
+    {
+        "id": "84d640378f6ced6b",
+        "type": "influxdb batch",
+        "z": "d2cff17a64c3bbb0",
+        "influxdb": "4ad3ce8d.582c5",
+        "precision": "",
+        "retentionPolicy": "",
+        "name": "write_data_influxdb",
+        "database": "",
+        "retentionPolicyV18Flux": "",
+        "org": "siemens",
+        "bucket": "edgedb",
+        "x": 970,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "d10f640d09c93dec",
+        "type": "link out",
+        "z": "d2cff17a64c3bbb0",
+        "name": "data_gen",
+        "links": [
+            "cecb7aefa8ca71cd",
+            "32816d9f8006b557"
+        ],
+        "x": 895,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "879b1c8370bda6bf",
+        "type": "debug",
+        "z": "d2cff17a64c3bbb0",
+        "name": "KPI-Result_PowerDrive1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 990,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "0043cfb5c478df93",
+        "type": "debug",
+        "z": "d2cff17a64c3bbb0",
+        "name": "KPI-Result_PowerDrive2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 990,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "3758c0fa9fe66552",
+        "type": "debug",
+        "z": "d2cff17a64c3bbb0",
+        "name": "KPI-Result_VoltageDrive3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 990,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "deaaf0c6847ce488",
+        "type": "debug",
+        "z": "d2cff17a64c3bbb0",
+        "name": "KPI-Result_CurrentDrive3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 990,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "c7b4a82a92c2f0dd",
+        "type": "comment",
+        "z": "f79577f76849fdce",
+        "name": "Calculate Total Power Consumption",
+        "info": "",
+        "x": 800,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "2334ae936b92d78c",
+        "type": "function",
+        "z": "f79577f76849fdce",
+        "name": "Query-List",
+        "func": "var a ='\"name\"'\n//msg.query=\"select * from powerdrive1 where \"+a+\"='powerdrive1'\"\nmsg.query= `from(bucket: \"edgedb\")\n  |> range(start: -5h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"powerdrive1\")\n  |> last()`;\nreturn msg; \n/*\nCLI-Funktionen f?r die Influxdb (Auszug)\n\"select * from data1\"\n//Zeigt alle Daten im measuurement an\nSELECT * FROM data where time > '2018-08-09T08:20:39.96Z' and time <= now()\n//Anzeige der measuremebts in einem bestimmten Zeitraum\nselect * from data where value > 80 and value < 85 \n//Filterung der Daten nach Value \n*/",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 270,
+        "y": 160,
+        "wires": [
+            [
+                "47452d1c9b52404c"
+            ]
+        ]
+    },
+    {
+        "id": "cc1ddeb5126d95ad",
+        "type": "function",
+        "z": "f79577f76849fdce",
+        "name": "Query-List",
+        "func": "var a ='\"name\"'\n//msg.query=\"select * from powerdrive2 where \"+a+\"='powerdrive2'\"\nmsg.query= `from(bucket: \"edgedb\")\n  |> range(start: -5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"powerdrive2\")\n  |> last()`;\nreturn msg; \n\n\n/*\nCLI-Funktionen f?r die Influxdb (Auszug)\n\"select * from data1\"\n//Zeigt alle Daten im measuurement an\nSELECT * FROM data where time > '2018-08-09T08:20:39.96Z' and time <= now()\n//Anzeige der measuremebts in einem bestimmten Zeitraum\nselect * from data where value > 80 and value < 85 \n//Filterung der Daten nach Value \n*/\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 270,
+        "y": 220,
+        "wires": [
+            [
+                "452b186254b6f8fc"
+            ]
+        ]
+    },
+    {
+        "id": "452b186254b6f8fc",
+        "type": "influxdb in",
+        "z": "f79577f76849fdce",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "influxdb_query_power2",
+        "query": "",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "siemens",
+        "x": 490,
+        "y": 220,
+        "wires": [
+            [
+                "1578f97c3043633c",
+                "abc6650420a403a6"
+            ]
+        ]
+    },
+    {
+        "id": "1578f97c3043633c",
+        "type": "function",
+        "z": "f79577f76849fdce",
+        "name": "collect_last_power_values",
+        "func": "context.data = context.data || {};\n\nswitch (msg.payload[0]._measurement) \n{\n    case \"powerdrive1\":\n        context.data.power1 = msg.payload[2]._value;\n        msg = null;\n        break;\n    case \"powerdrive2\":\n        context.data.power2= msg.payload[2]._value;\n        msg = null;\n        break;\n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.power1 !== null && context.data.power2 !== null) \n{\n\tmsg2 = {};\n    msg2 = context.data;\n\n    context.data=null;\n\treturn msg2;\n} \nelse\n{\n    \n    return msg;    \n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 770,
+        "y": 220,
+        "wires": [
+            [
+                "e5aafc145b4263fb",
+                "3ad930bdac833dc4"
+            ]
+        ]
+    },
+    {
+        "id": "22c68a164ad1ec85",
+        "type": "function",
+        "z": "f79577f76849fdce",
+        "name": "join_and_write_power_Influxdb",
+        "func": "total = msg.payload;\n\n\n    Beta = [{\n        measurement: \"GEN_KPI_TotalPower\",\n        fields:{\n            name: \"TotalPower\",\n            value:total,\n            //weitereTags: -100 //(optional) nur 4 Datatypes sind in der Influxdb akzeptiert: Int,Float,String, Bool\n        },\n        timestamp: new Date()\n    }]\n//    Arr.push(Beta);\n//}\n\nmsg.payload = Beta;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1270,
+        "y": 220,
+        "wires": [
+            [
+                "d207fea5484fe83d",
+                "a91644cce66f10e0"
+            ]
+        ]
+    },
+    {
+        "id": "a91644cce66f10e0",
+        "type": "influxdb batch",
+        "z": "f79577f76849fdce",
+        "influxdb": "4ad3ce8d.582c5",
+        "precision": "",
+        "retentionPolicy": "",
+        "name": "influxdb_write",
+        "database": "",
+        "retentionPolicyV18Flux": "",
+        "org": "siemens",
+        "bucket": "edgedb",
+        "x": 1520,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "47452d1c9b52404c",
+        "type": "influxdb in",
+        "z": "f79577f76849fdce",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "influxdb_query_power1",
+        "query": "",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "siemens",
+        "x": 490,
+        "y": 160,
+        "wires": [
+            [
+                "1578f97c3043633c",
+                "abc6650420a403a6"
+            ]
+        ]
+    },
+    {
+        "id": "32816d9f8006b557",
+        "type": "link in",
+        "z": "f79577f76849fdce",
+        "name": "",
+        "links": [
+            "3e5dc939.97a5b6",
+            "d10f640d09c93dec"
+        ],
+        "x": 135,
+        "y": 220,
+        "wires": [
+            [
+                "2334ae936b92d78c",
+                "cc1ddeb5126d95ad"
+            ]
+        ]
+    },
+    {
+        "id": "e5aafc145b4263fb",
+        "type": "function",
+        "z": "f79577f76849fdce",
+        "name": "sum_total_power",
+        "func": "var arr = [];\nvar mean=0;\nvar sum=0;\n\narr = Object.keys(msg).map(function(key) {\n    return msg[key]\n    })\narr.splice(-1,1)\n\nfor(var i=0; i < arr.length ; i++){\n      sum = sum + arr[i];\n}\n// mean = sum / arr.length; \n\nmsg2 = new Object();\n//msg2.payload = (arr[0] + arr[1] + arr[2]) / arr.length; \n\nmsg2.payload = sum;\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1010,
+        "y": 220,
+        "wires": [
+            [
+                "22c68a164ad1ec85"
+            ]
+        ]
+    },
+    {
+        "id": "d207fea5484fe83d",
+        "type": "debug",
+        "z": "f79577f76849fdce",
+        "name": "KPI-Power",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1510,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "3ad930bdac833dc4",
+        "type": "debug",
+        "z": "f79577f76849fdce",
+        "name": "Last Power Values",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1010,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "f758180cf12229cf",
+        "type": "debug",
+        "z": "f79577f76849fdce",
+        "name": "KPI-Power",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "abc6650420a403a6",
+        "type": "function",
+        "z": "f79577f76849fdce",
+        "name": "collect_last_power_values",
+        "func": "context.data = context.data || {};\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 750,
+        "y": 380,
+        "wires": [
+            [
+                "f758180cf12229cf"
+            ]
+        ]
+    },
+    {
+        "id": "4a705f03661bb727",
+        "type": "influxdb in",
+        "z": "672246f388b5a27f",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "query",
+        "query": "",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "siemens",
+        "x": 850,
+        "y": 160,
+        "wires": [
+            [
+                "b6df0f5e9e534356"
+            ]
+        ]
+    },
+    {
+        "id": "e83ee9b2bc015293",
+        "type": "debug",
+        "z": "672246f388b5a27f",
+        "name": "count",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 610,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "cecb7aefa8ca71cd",
+        "type": "link in",
+        "z": "672246f388b5a27f",
+        "name": "input_raw_data",
+        "links": [
+            "d10f640d09c93dec"
+        ],
+        "x": 55,
+        "y": 160,
+        "wires": [
+            [
+                "b657b697547067f4"
+            ]
+        ]
+    },
+    {
+        "id": "73080c6fb4de85ac",
+        "type": "influxdb in",
+        "z": "672246f388b5a27f",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "query",
+        "query": "",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "siemens",
+        "x": 450,
+        "y": 160,
+        "wires": [
+            [
+                "e83ee9b2bc015293",
+                "9dd6522a8ce725cf"
+            ]
+        ]
+    },
+    {
+        "id": "735cfcb788116ea1",
+        "type": "function",
+        "z": "672246f388b5a27f",
+        "name": "COUNT",
+        "func": "msgQueryCount = {}\nmsgQueryCount.measurement = msg.payload[0].measurement\n//msgQueryCount.query = 'SELECT COUNT(\"value\") FROM ' + msg.payload[0].measurement\n\nmsgQueryCount.query= `from(bucket: \"edgedb\")\n  |> range(start: -5h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"powerdrive1\" or r[\"_measurement\"] == \"powerdrive2\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> count()`;\nreturn msgQueryCount;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 300,
+        "y": 160,
+        "wires": [
+            [
+                "73080c6fb4de85ac"
+            ]
+        ]
+    },
+    {
+        "id": "9dd6522a8ce725cf",
+        "type": "function",
+        "z": "672246f388b5a27f",
+        "name": "GET_LAST_ENTRIES",
+        "func": "msgQueryGet = {}\nmsgQueryGet.measurement = msg.measurement\nif (msg.payload[0]._value >= 50) {\n    //msgQueryGet.query = 'SELECT * FROM ' + msg.measurement + ' ORDER BY time DESC limit 50'\n    msgQueryGet.query= `from(bucket: \"edgedb\")\n                      |> range(start: -5h)\n                      |> filter(fn: (r) => r[\"_measurement\"] == \"${msg.measurement}\")\n                      |> filter(fn: (r) => r[\"_field\"] == \"value\")\n                      |> sort(columns: [\"_time\"], desc: true)\n                      |> limit(n: 50)\n                      |> group()`;\n    return msgQueryGet;\n}\n\nelse {msgQueryGet.query= `from(bucket: \"edgedb\")\n              |> range(start: -5h)\n              |> filter(fn: (r) => r[\"_measurement\"] == \"${msg.measurement}\")\n              |> filter(fn: (r) => r[\"_field\"] == \"value\")\n              |> sort(columns: [\"_time\"], desc: true)\n              |> group()`;\n    return msgQueryGet;\n    \n}\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 660,
+        "y": 160,
+        "wires": [
+            [
+                "4a705f03661bb727"
+            ]
+        ]
+    },
+    {
+        "id": "396d17eefbc9434c",
+        "type": "comment",
+        "z": "672246f388b5a27f",
+        "name": "### check if measurement has enough entries and get last 5 values if true",
+        "info": "",
+        "x": 320,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "6e686372a236a445",
+        "type": "mqtt out",
+        "z": "672246f388b5a27f",
+        "name": "StandardKpis",
+        "topic": "StandardKpis",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b6ec4c8d.61eac",
+        "x": 1240,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "b6df0f5e9e534356",
+        "type": "json",
+        "z": "672246f388b5a27f",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 990,
+        "y": 160,
+        "wires": [
+            [
+                "7200a144b578c41b",
+                "6e686372a236a445"
+            ]
+        ]
+    },
+    {
+        "id": "7200a144b578c41b",
+        "type": "debug",
+        "z": "672246f388b5a27f",
+        "name": "response_get",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "3890c2b4231a55f3",
+        "type": "comment",
+        "z": "672246f388b5a27f",
+        "name": "PowerDrive1 and PowerDrive2 last 50 entries",
+        "info": "",
+        "x": 210,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "26634a7b33660717",
+        "type": "influxdb in",
+        "z": "672246f388b5a27f",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "query",
+        "query": "",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "siemens",
+        "x": 830,
+        "y": 400,
+        "wires": [
+            [
+                "43b0ecbc41b67530"
+            ]
+        ]
+    },
+    {
+        "id": "76f9e867a41e66f7",
+        "type": "debug",
+        "z": "672246f388b5a27f",
+        "name": "mqtt output",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1340,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "6bd97443cd1b167b",
+        "type": "influxdb in",
+        "z": "672246f388b5a27f",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "query",
+        "query": "from(bucket: \"edgedb\")\n  |> range(start: -5h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"voltagedrive3\" and (r[\"_field\"] == \"value\"))\n  |> count()",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "siemens",
+        "x": 370,
+        "y": 400,
+        "wires": [
+            [
+                "d0f8006d77c4406e",
+                "6d86c572cbb3b884"
+            ]
+        ]
+    },
+    {
+        "id": "d0f8006d77c4406e",
+        "type": "function",
+        "z": "672246f388b5a27f",
+        "name": "GET_LAST_ENTRIES",
+        "func": "// gets the value of n, if not yet set takes default value 50\nvar n = context.get('sample_n')|| 50;\n\n\n    \n    msgQueryGet = {}\n    //msgQueryGet.measurement = msg.measurement\n    msgQueryGet.measurement = 'voltagedrive3'\n    if (msg.payload[0]._value >= n) {\n        msgQueryGet.SampleNumber = n\n        //msgQueryGet.query = 'SELECT \"value\" FROM voltagedrive3 ORDER BY time DESC limit ' + n\n        msgQueryGet.query= `from(bucket: \"edgedb\")\n                  |> range(start: -5h)\n                  |> filter(fn: (r) => r[\"_measurement\"] == \"voltagedrive3\" and (r[\"_field\"] == \"value\"))\n                  |> sort(columns: [\"_time\"], desc: true)\n                  |> limit(n: 50)`;\n        //msgQueryGet.query = 'SELECT \"value\" FROM ' + msg.measurement + ' limit ' + n\n        return msgQueryGet;\n    }\n    else {\n    msgQueryGet.SampleNumber = n\n    msgQueryGet.query= `from(bucket: \"edgedb\")\n              |> range(start: -5h)\n              |> filter(fn: (r) => r[\"_measurement\"] == \"voltagedrive3\" and (r[\"_field\"] == \"value\"))\n              |> sort(columns: [\"_time\"], desc: true)`;\n        return msgQueryGet;\n    }",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 600,
+        "y": 400,
+        "wires": [
+            [
+                "26634a7b33660717",
+                "7b125a33eb974636"
+            ]
+        ]
+    },
+    {
+        "id": "ed8fada1482ee088",
+        "type": "mqtt out",
+        "z": "672246f388b5a27f",
+        "name": "Mean",
+        "topic": "Mean",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b6ec4c8d.61eac",
+        "x": 1320,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "c8c44555b780b219",
+        "type": "comment",
+        "z": "672246f388b5a27f",
+        "name": "VoltageDrive3 dynamic sample of entries",
+        "info": "",
+        "x": 490,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "029065df23f749db",
+        "type": "influxdb in",
+        "z": "672246f388b5a27f",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "query",
+        "query": "",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "siemens",
+        "x": 810,
+        "y": 600,
+        "wires": [
+            [
+                "43b0ecbc41b67530"
+            ]
+        ]
+    },
+    {
+        "id": "084e33deb6f61fdd",
+        "type": "influxdb in",
+        "z": "672246f388b5a27f",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "query",
+        "query": "from(bucket: \"edgedb\")\n  |> range(start: -5h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"currentdrive3\" and (r[\"_field\"] == \"value\"))\n  |> count()",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "siemens",
+        "x": 370,
+        "y": 600,
+        "wires": [
+            [
+                "6776187645c3fe94"
+            ]
+        ]
+    },
+    {
+        "id": "6776187645c3fe94",
+        "type": "function",
+        "z": "672246f388b5a27f",
+        "name": "GET_LAST_ENTRIES",
+        "func": "\n\n// gets the value of n, if not yet set takes default value 50\nvar n = context.get('sample_n')|| 50;\n\n\n    \n    msgQueryGet = {}\n    //msgQueryGet.measurement = msg.measurement\n    msgQueryGet.measurement = 'currentdrive3'\n    if (msg.payload[0]._value >= n) {\n        msgQueryGet.SampleNumber = n\n        //msgQueryGet.query = 'SELECT \"value\" FROM currentdrive3 ORDER BY time DESC limit ' + n\n        msgQueryGet.query= `from(bucket: \"edgedb\")\n          |> range(start: -5h)\n          |> filter(fn: (r) => r[\"_measurement\"] == \"currentdrive3\" and (r[\"_field\"] == \"value\"))\n          |> sort(columns: [\"_time\"], desc: true)\n          |> limit(n: 50)`;\n        //msgQueryGet.query = 'SELECT \"value\" FROM ' + msg.measurement + ' limit ' + n\n        return msgQueryGet;\n    }\n    else {\n    msgQueryGet.SampleNumber = n\n    msgQueryGet.query= `from(bucket: \"edgedb\")\n              |> range(start: -5h)\n              |> filter(fn: (r) => r[\"_measurement\"] == \"currentdrive3\" and (r[\"_field\"] == \"value\"))\n              |> sort(columns: [\"_time\"], desc: true)`;\n        return msgQueryGet;\n    }",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 600,
+        "y": 600,
+        "wires": [
+            [
+                "029065df23f749db"
+            ]
+        ]
+    },
+    {
+        "id": "17450320fc9ba697",
+        "type": "comment",
+        "z": "672246f388b5a27f",
+        "name": "CurrentDrive3  dynamic sample of entries",
+        "info": "",
+        "x": 490,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "b657b697547067f4",
+        "type": "switch",
+        "z": "672246f388b5a27f",
+        "name": "filter",
+        "property": "payload[0].measurement",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "powerdrive1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "powerdrive2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "voltagedrive3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "currentdrive3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "735cfcb788116ea1"
+            ],
+            [
+                "735cfcb788116ea1"
+            ],
+            [
+                "6bd97443cd1b167b",
+                "5208c996bf13c65a"
+            ],
+            [
+                "084e33deb6f61fdd"
+            ]
+        ]
+    },
+    {
+        "id": "43b0ecbc41b67530",
+        "type": "function",
+        "z": "672246f388b5a27f",
+        "name": "manual_join",
+        "func": "var tempo_cd3_batch = context.get('cd3_batch')||[];\nvar tempo_vd3_batch = context.get('vd3_batch')||[];\n\nfunction build_analytics_object(){\n    data_obj = {\n        sample_number : msg.SampleNumber,\n        current_drive3_batch : tempo_cd3_batch,\n        voltage_drive3_batch : tempo_vd3_batch,\n    }\n    return data_obj\n}\n\n\nif (msg.measurement == 'currentdrive3'){\n    tempo_cd3_batch = msg.payload\n    context.set('cd3_batch',tempo_cd3_batch)\n    \n}\nelse if (msg.measurement == 'voltagedrive3') {\n    tempo_vd3_batch = msg.payload\n    context.set('vd3_batch',tempo_vd3_batch)\n}\n\nif (tempo_cd3_batch.length > 0 && tempo_vd3_batch.length >0 ) {\n    py_obj={}\n    py_obj.payload = build_analytics_object()\n    tempo_cd3_batch = []\n    tempo_vd3_batch = []\n    context.set('cd3_batch', tempo_cd3_batch)\n    context.set('vd3_batch', tempo_vd3_batch)\n    \n    return py_obj\n    \n}\n\nelse{\n    return\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1100,
+        "y": 500,
+        "wires": [
+            [
+                "76f9e867a41e66f7",
+                "ed8fada1482ee088"
+            ]
+        ]
+    },
+    {
+        "id": "10dd53430d625ce1",
+        "type": "mqtt in",
+        "z": "672246f388b5a27f",
+        "name": "",
+        "topic": "StandardKpiResult",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b6ec4c8d.61eac",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 130,
+        "y": 820,
+        "wires": [
+            [
+                "c0a052f98ecaceb6"
+            ]
+        ]
+    },
+    {
+        "id": "770897d28e396dfb",
+        "type": "debug",
+        "z": "672246f388b5a27f",
+        "name": "response standard kpis",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "c0a052f98ecaceb6",
+        "type": "json",
+        "z": "672246f388b5a27f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 510,
+        "y": 820,
+        "wires": [
+            [
+                "d2edb248be71b1a9"
+            ]
+        ]
+    },
+    {
+        "id": "d2edb248be71b1a9",
+        "type": "function",
+        "z": "672246f388b5a27f",
+        "name": "store data",
+        "func": "my_payload = {};\nmy_payload = msg.payload;\noutput_standardkpis = {}\noutput_standardkpis.measurement = my_payload.name.toUpperCase() + '_STANDARD_KPIS'\noutput_standardkpis.payload = {\n    mean: Math.round(my_payload.mean_result * 1e2)/ 1e2,\n    median: Math.round(my_payload.median_result * 1e2)/ 1e2,\n    stddev: Math.round(my_payload.stddev_result * 1e2)/ 1e2,\n    name: my_payload.name,\n}\n\nreturn output_standardkpis;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 870,
+        "y": 820,
+        "wires": [
+            [
+                "5294a0e2a94d76f4",
+                "770897d28e396dfb"
+            ]
+        ]
+    },
+    {
+        "id": "5294a0e2a94d76f4",
+        "type": "influxdb out",
+        "z": "672246f388b5a27f",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "write_influxdb",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "",
+        "retentionPolicyV18Flux": "",
+        "org": "siemens",
+        "bucket": "edgedb",
+        "x": 1200,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "934e935b1e623d4d",
+        "type": "mqtt in",
+        "z": "672246f388b5a27f",
+        "name": "",
+        "topic": "MeanResult",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b6ec4c8d.61eac",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 110,
+        "y": 960,
+        "wires": [
+            [
+                "06ca5927760fb542"
+            ]
+        ]
+    },
+    {
+        "id": "c4a8fa366184918e",
+        "type": "debug",
+        "z": "672246f388b5a27f",
+        "name": "response mean",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1210,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "06ca5927760fb542",
+        "type": "json",
+        "z": "672246f388b5a27f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 510,
+        "y": 960,
+        "wires": [
+            [
+                "2f9263eebc4a5784"
+            ]
+        ]
+    },
+    {
+        "id": "2f9263eebc4a5784",
+        "type": "function",
+        "z": "672246f388b5a27f",
+        "name": "store data",
+        "func": "my_payload = {};\nmy_payload = msg.payload;\noutput_pd1_mean = {}\noutput_pd1_mean.measurement = my_payload.name.toUpperCase()\noutput_pd1_mean.payload = {\n    value: Math.round(my_payload.power_mean_result * 1e2)/ 1e2,\n    name: my_payload.name,\n}\n\nreturn output_pd1_mean;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 870,
+        "y": 960,
+        "wires": [
+            [
+                "a5bcb5f0ecbbf707",
+                "c4a8fa366184918e"
+            ]
+        ]
+    },
+    {
+        "id": "a5bcb5f0ecbbf707",
+        "type": "influxdb out",
+        "z": "672246f388b5a27f",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "write_influxdb",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "",
+        "retentionPolicyV18Flux": "",
+        "org": "siemens",
+        "bucket": "edgedb",
+        "x": 1200,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "20a7f5daa9cdd9f4",
+        "type": "comment",
+        "z": "672246f388b5a27f",
+        "name": "Data Analytics Results",
+        "info": "",
+        "x": 540,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "5208c996bf13c65a",
+        "type": "debug",
+        "z": "672246f388b5a27f",
+        "name": "mqtt output",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "6d86c572cbb3b884",
+        "type": "debug",
+        "z": "672246f388b5a27f",
+        "name": "mqtt output",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "7b125a33eb974636",
+        "type": "debug",
+        "z": "672246f388b5a27f",
+        "name": "mqtt output",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 300,
+        "wires": []
+    }
+]

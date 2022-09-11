@@ -1,0 +1,39 @@
+### Docker Compose File for node-red - Replacement of Southbound and SIMATIC Flow Creator ###
+# This docker-compose file creates a preconfigured NodeRed container MQTT connection
+
+
+version: '2.4'                                # docker-compose version is set to 2.4 
+
+services:
+
+  ###### NODE-RED ######
+  nodered:
+    build:                                    # Configuration applied at build time
+      context: ./node-red                     # Relative Path to node-red from this docker-compose file containing Dockerfile
+      args:                                   # Args variables available only at build-time
+        no_proxy: $no_proxy
+        http_proxy: $http_proxy               # Proxy url's from environment
+        https_proxy: $https_proxy
+    image: nodered:v0.0.1                     # Name of the built image
+    container_name: nodered                   # Name of the node-red container
+    restart: unless-stopped                   # always restarts (see overview page 12 Industrial Edge Developer Guide)
+    environment:                              # Environment variables available at container run-time
+      http_proxy: $http_proxy                 # Proxy url's from environment
+      https_proxy: $https_proxy
+    logging:                                  # allow logging
+      options:                                # we use best pactice here as limiting file size and rolling mechanism
+        max-size: "10m"                       # File size is 10MB
+        max-file: "2"                         # only 2 files created before rolling mechanism applies
+    ports:                                    # expose of ports and publish
+      - "33080:1880"                          # map containers port 33080 to host's port 1880
+    networks:                                 # define networks connected to container 'data-analytics' 
+      proxy-redirect:                         # Name of the network
+    external_links:                            # Dependencie on other container
+      - influxdb                               # Wait for start of container 'influxdb'
+
+####### NETWORK CONFIG ######
+networks:                           # Network interface configuration
+  proxy-redirect:                   # Reference 'proxy-redirect' as predefined network
+    external:                       # Note: Please create the network manually as it is preexisting on Industrial Edge Device
+      name: proxy-redirect
+    driver: bridge
