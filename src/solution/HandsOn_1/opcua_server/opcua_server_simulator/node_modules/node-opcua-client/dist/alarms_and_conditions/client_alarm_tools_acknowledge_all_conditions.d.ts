@@ -1,0 +1,18 @@
+import { StatusCode } from "node-opcua-status-code";
+import { ClientSession } from "../client_session";
+import { EventStuff } from "./client_alarm";
+/**
+ *
+ * @param session
+ * @param eventStuff
+ * @param comment
+ */
+export declare function acknowledgeCondition(session: ClientSession, eventStuff: EventStuff, comment: string): Promise<StatusCode>;
+export declare function confirmCondition(session: ClientSession, eventStuff: EventStuff, comment: string): Promise<StatusCode>;
+/**
+ * Enumerate all events
+ * @param session
+ */
+export declare function findActiveConditions(session: ClientSession): Promise<EventStuff[]>;
+export declare function acknwoledgeAllConditions(session: ClientSession, message: string): Promise<void>;
+export declare function confirmAllConditions(session: ClientSession, message: string): Promise<void>;

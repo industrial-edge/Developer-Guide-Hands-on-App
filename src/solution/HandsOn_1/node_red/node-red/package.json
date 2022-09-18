@@ -14,7 +14,8 @@
     },
     "dependencies": {
         "node-red": "2.2.2",
-        "node-red-contrib-influxdb": "0.6.1"
+        "node-red-contrib-influxdb": "0.6.1",
+        "node-red-contrib-opcua": "0.2.289"
     },
     "engines": {
         "node": ">=12"

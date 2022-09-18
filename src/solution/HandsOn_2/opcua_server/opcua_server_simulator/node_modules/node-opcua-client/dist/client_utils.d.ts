@@ -1,0 +1,22 @@
+/**
+ * @module node-opcua-client
+ */
+import { NodeIdLike } from "node-opcua-nodeid";
+import { Variant } from "node-opcua-variant";
+import { ClientSession, ResponseCallback } from "./client_session";
+interface AnalogDataItemSnapshot {
+    engineeringUnits: Variant | null;
+    engineeringUnitsRange: Variant | null;
+    instrumentRange: Variant | null;
+    valuePrecision: Variant | null;
+    definition: Variant | null;
+}
+/**
+ * @method readUAAnalogItem
+ * @param session
+ * @param nodeId
+ * @param callback
+ */
+export declare function readUAAnalogItem(session: ClientSession, nodeId: NodeIdLike): Promise<AnalogDataItemSnapshot>;
+export declare function readUAAnalogItem(session: ClientSession, nodeId: NodeIdLike, callback: ResponseCallback<AnalogDataItemSnapshot>): void;
+export {};

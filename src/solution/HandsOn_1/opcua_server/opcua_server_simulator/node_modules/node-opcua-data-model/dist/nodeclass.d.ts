@@ -1,0 +1,16 @@
+export declare enum NodeClass {
+    Unspecified = 0,
+    Object = 1,
+    Variable = 2,
+    Method = 4,
+    ObjectType = 8,
+    VariableType = 16,
+    ReferenceType = 32,
+    DataType = 64,
+    View = 128
+}
+export declare const schemaEnumNodeClass: {
+    name: string;
+    documentation: string;
+    enumValues: typeof NodeClass;
+};

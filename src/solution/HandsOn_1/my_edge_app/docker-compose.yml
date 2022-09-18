@@ -39,8 +39,13 @@ services:
     restart: unless-stopped             # always restarts (see overview page 12 Industrial Edge Developer Guide) 
     mem_limit: 1400m
     environment:                        # Environment variables available at container run-time
-      INFLUXDB_DB: $INFLUXDB_DB         # Variable of INFLUXDB_DB will be set at runtime as well
-      INFLUXDB_DATA_INDEX_VERSION: $INFLUXDB_DATA_INDEX_VERSION
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=adminadmin
+      - DOCKER_INFLUXDB_INIT_ORG=siemens
+      - DOCKER_INFLUXDB_INIT_BUCKET=edgedb
+      - DOCKER_INFLUXDB_INIT_RETENTION=1w
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=testtoken
     logging:                            # allow logging
       options:                          # we use best pactice here as limiting file size and rolling mechanism
         max-size: "10m"                 # File size is 10MB

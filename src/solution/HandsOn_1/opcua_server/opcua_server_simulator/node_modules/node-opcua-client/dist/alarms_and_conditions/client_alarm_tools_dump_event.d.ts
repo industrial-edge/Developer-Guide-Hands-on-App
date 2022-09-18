@@ -1,0 +1,9 @@
+import { IBasicSession } from "node-opcua-pseudo-session";
+import { Variant } from "node-opcua-variant";
+/**
+ *
+ * @param session
+ * @param fields
+ * @param eventFields
+ */
+export declare function dumpEvent(session: IBasicSession, fields: string[], eventFields: Variant[]): Promise<void>;

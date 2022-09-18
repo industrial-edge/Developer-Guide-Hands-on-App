@@ -1,0 +1,4 @@
+import { ClientSession } from "../client_session";
+import { ClientAlarmList } from "./client_alarm_list";
+export declare function uninstallAlarmMonitoring(session: ClientSession): Promise<void>;
+export declare function installAlarmMonitoring(session: ClientSession): Promise<ClientAlarmList>;
