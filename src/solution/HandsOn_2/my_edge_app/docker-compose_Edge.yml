@@ -26,7 +26,7 @@ services:
 
 ##### INFLUXDB ######
   influxdb:
-    image: influxdb:$INFLUXDB_VERSION   # Define image to pull from docker hub if not already on your machine available
+    image: influxdb:2.2-alpine          # Define image to pull from docker hub if not already on your machine available
     container_name: influxdb            # Name of the influx-db container
     environment:                        
       INFLUXD_LOG_LEVEL: debug
