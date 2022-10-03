@@ -1,0 +1,10 @@
+{
+    "datasource": 
+    {
+      "dataaquisition": {
+        "protocol": "opcua",
+        "host": "localhost",
+        "port": 4841
+      }
+    }
+}

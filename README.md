@@ -2,10 +2,12 @@
 
 Creating a first Industrial Edge App on a development environment to deploy it to an Industrial Edge Device based on App Developer Guide.
 
-- [Prerequisites](#prerequisites)
-- [Description](#description)
-- [Contribution](#contribution)
-- [Licence and Legal Information](#licence-and-legal-information)
+- [My first Industrial Edge App - App Developer Guide](#my-first-industrial-edge-app---app-developer-guide)
+  - [Prerequisites](#prerequisites)
+  - [Description](#description)
+  - [Documentation](#documentation)
+  - [Contribution](#contribution)
+  - [License and Legal Information](#license-and-legal-information)
 
 ## Prerequisites
 
@@ -41,6 +43,6 @@ Additionally everybody is free to propose any changes to this repository using P
 
 If you are interested in contributing via Pull Request, please check the [Contribution License Agreement](Siemens_CLA_1.1.pdf) and forward a signed copy to [industrialedge.industry@siemens.com](mailto:industrialedge.industry@siemens.com?subject=CLA%20Agreement%20Industrial-Edge).
 
-## Licence and Legal Information
+## License and Legal Information
 
-Please read the [Legal information](LICENSE.md).
+Please read the [Legal information](LICENSE.txt).
