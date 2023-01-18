@@ -8,10 +8,11 @@ Creating a first Industrial Edge App on a development environment to deploy it t
   - [Documentation](#documentation)
   - [Contribution](#contribution)
   - [License and Legal Information](#license-and-legal-information)
+  - [Disclaimer](#disclaimer)
 
 ## Prerequisites
 
-Prerequisites are in the App Developer Guide which is available on [SIOS](https://support.industry.siemens.com/cs/ww/en/view/109795865). It contains description of the requirements as well as the step-by-step description how to work with this Developer Guide repository.
+Prerequisites are in the App Developer Guide which is available on [industrial-edge.io](https://industrial-edge.io/developer/index.html). It contains description of the requirements as well as the step-by-step description how to work with this Developer Guide repository.
 
 ## Description
 
@@ -30,7 +31,7 @@ The app contains three parts – the connectivity to collect the data from the O
 
 ## Documentation
 
-- Here is a link to the [SIOS](https://support.industry.siemens.com/cs/ww/en/view/109795865) where the App Developer Guide of this application example can be found.
+- Here is a link to the [industrial-edge.io](https://industrial-edge.io/developer/index.html) where the App Developer Guide of this application example can be found.
 - You can find further documentation and help in the following links
   - [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/#/documentation)
   - [Industrial Edge Forum](https://www.siemens.com/industrial-edge-forum)
@@ -46,3 +47,9 @@ If you are interested in contributing via Pull Request, please check the [Contri
 ## License and Legal Information
 
 Please read the [Legal information](LICENSE.txt).
+
+## Disclaimer
+
+IMPORTANT - PLEASE READ CAREFULLY:
+
+This documentation describes how you can download and set up containers which consist of or contain third-party software. By following this documentation you agree that using such third-party software is done at your own discretion and risk. No advice or information, whether oral or written, obtained by you from us or from this documentation shall create any warranty for the third-party software. Additionally, by following these descriptions or using the contents of this documentation, you agree that you are responsible for complying with all third party licenses applicable to such third-party software. All product names, logos, and brands are property of their respective owners. All third-party company, product and service names used in this documentation are for identification purposes only. Use of these names, logos, and brands does not imply endorsement.
