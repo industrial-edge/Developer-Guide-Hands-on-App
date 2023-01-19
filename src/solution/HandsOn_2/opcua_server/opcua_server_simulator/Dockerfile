@@ -5,10 +5,11 @@ RUN mkdir /app
 WORKDIR /app
 
 RUN apk --no-cache add \
-    openssl=1.1.1q-r0
+    openssl=~1.1.1
 
 # package.json contains Node-RED NPM module and node dependencies
 COPY package.json .
+COPY package-lock.json .
 COPY config.json .
 COPY app.js .
 COPY server.js .

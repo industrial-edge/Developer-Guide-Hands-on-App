@@ -5,11 +5,9 @@ services:
 ###### OPC-Server ######
   opc-server:
     image: opc-server:v0.0.1
+    build: ./opcua_server_simulator/
     container_name: opc-server
     mem_limit: 200m
-    environment:                        # Environment variables available at container run-time
-      http_proxy: $http_proxy
-      https_proxy: $http_proxy
     ports:
       - 4841:4841
     networks:
