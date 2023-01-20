@@ -50,7 +50,7 @@ services:
     volumes:                            # mount volume from host
       - db-backup:/var/lib/influxdb     # mount named volume 'db-backup' to host's path to /var/lib/influxdb
     ports:                              # expose of ports and publish
-      - "3000:8086"                     # map containers port 8086 to host's port 3000
+      - "38086:8086"                     # map containers port 8086 to host's port 38086
     networks:                           # define networks connected to container 'influxdb' 
       proxy-redirect:                   # Name of the network
 
