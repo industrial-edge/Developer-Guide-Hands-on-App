@@ -1,1 +1,0 @@
-var uaserver = require(process.cwd()+ "/server.js");
