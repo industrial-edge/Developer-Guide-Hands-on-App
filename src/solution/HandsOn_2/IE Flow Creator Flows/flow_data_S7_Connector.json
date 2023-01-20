@@ -1,0 +1,1310 @@
+[
+    {
+        "id": "9f80fd1f.3bd908",
+        "type": "tab",
+        "label": "Data Collection",
+        "disabled": false,
+        "info": "msgoutput={}\nmsgoutput.measurement = msg.topic.split('/').pop;\nmsgoutput.payload = {\n    serverTimestamp: msg.payload.ts.toISOString(),\n    value: Math.round(msg.payload.val * 1e2)/ 1e2,\n    name: msgoutput.measurement,\n}\n\nreturn msgoutput;"
+    },
+    {
+        "id": "7474ceb842992a1a",
+        "type": "tab",
+        "label": "KPI-Power-Calc",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1ff02d49d32ca74f",
+        "type": "tab",
+        "label": "KPI Estimation",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "4ad3ce8d.582c5",
+        "type": "influxdb",
+        "hostname": "influxdb",
+        "port": "8086",
+        "protocol": "http",
+        "database": "edgedb",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://influxdb:8086",
+        "rejectUnauthorized": false
+    },
+    {
+        "id": "1ab7e97a.bda1e7",
+        "type": "mqtt-broker",
+        "name": "Databus",
+        "broker": "ie-databus",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "compatmode": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "1b70cc5299eb3297",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://192.168.239.200:4840",
+        "secpol": "None",
+        "secmode": "SIGN",
+        "none": false,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "38a14f21.7ff638",
+        "type": "link out",
+        "z": "9f80fd1f.3bd908",
+        "name": "data_gen",
+        "links": [
+            "684dd35d.22d42c",
+            "70b8ec30.c1ee84",
+            "be3b1e8c001db67a",
+            "6464c1e5620091ab",
+            "ecef8cf0f9a01c4b"
+        ],
+        "x": 1105,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "20da19e9.da8926",
+        "type": "mqtt in",
+        "z": "9f80fd1f.3bd908",
+        "name": "FA_Drives-Data source",
+        "topic": "ie/d/j/simatic/v1/opcuac1/dp/r/FA_Drives/default",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1ab7e97a.bda1e7",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 220,
+        "y": 280,
+        "wires": [
+            [
+                "971f6ffe.7241f"
+            ]
+        ]
+    },
+    {
+        "id": "971f6ffe.7241f",
+        "type": "function",
+        "z": "9f80fd1f.3bd908",
+        "name": "Convert S7 Connecor JSON to InfluxDB JSON",
+        "func": "var id2NameMap = global.get(\"id2NameMap\")\nvar id2DataTypeMap = global.get(\"id2DataTypeMap\")\n\nlet msgoutput={}\n\nlet bulk = JSON.parse(msg.payload);\n//node.warn(bulk)\nmsgoutput.payload = new Array(bulk.vals.size);\n\nfor (var i = 0; i < bulk.vals.length; i++) {\n    let record = bulk.vals[i]\n\n    msgoutput.payload[i] = {\n        measurement: id2NameMap.get(record.id),\n        fields: {\n            value: Math.round(record.val * 1e2)/ 1e2,\n            name: id2NameMap.get(record.id),\n            qualitycode: false\n        },\n        timestamp: new Date(record.ts)\n    }\n    \n}\n\nreturn msgoutput;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 280,
+        "wires": [
+            [
+                "d20bf630.ac7c98",
+                "50556ca2.120a8c",
+                "6d21e9a.2814a98"
+            ]
+        ]
+    },
+    {
+        "id": "93f44c93.8b63e",
+        "type": "comment",
+        "z": "9f80fd1f.3bd908",
+        "name": "### Map variable id to variable name so that it is human readable ###",
+        "info": "",
+        "x": 370,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "fdc0f327.a560a",
+        "type": "mqtt in",
+        "z": "9f80fd1f.3bd908",
+        "name": "",
+        "topic": "ie/m/j/simatic/v1/opcuac1/dp",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1ab7e97a.bda1e7",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 280,
+        "y": 100,
+        "wires": [
+            [
+                "b18c8995.ce3c7",
+                "43428e95.c95d58"
+            ]
+        ]
+    },
+    {
+        "id": "b18c8995.ce3c7",
+        "type": "function",
+        "z": "9f80fd1f.3bd908",
+        "name": "",
+        "func": "var id2NameMap = global.get(\"id2NameMap\")\nvar id2DataTypeMap = global.get(\"id2DataTypeMap\")\n\nif(id2NameMap == undefined || id2DataTypeMap == undefined ){\n    id2NameMap = new Map(); \n    id2DataTypeMap = new Map(); \n}\n\nlet connectionName = \"FA_Drives\"; // Name of the connection\n\n\nlet m = JSON.parse(msg.payload);\n\n\n// Mapping ID -> Variable Name\n// Mapping ID -> Variable Data Type\nm.connections.forEach(connection => \n{\n    if(connection.name == connectionName) {\n        let datapointobjects = connection.dataPoints;\n        \n        datapointobjects.forEach( datapoint => {\n            datapoint.dataPointDefinitions.forEach( definition => {\n                id2NameMap.set(definition.id, definition.name) // Mapping ID -> Variable Name\n                id2DataTypeMap.set(definition.id, definition.dataType) // Mapping ID -> Variable Data Type \n            })\n           \n        })\n    }\n    \n})\n\nglobal.set(\"id2NameMap\", id2NameMap)\nglobal.set(\"id2DataTypeMap\", id2DataTypeMap)\n\nmsg.payload = id2NameMap\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 140,
+        "wires": [
+            [
+                "43428e95.c95d58"
+            ]
+        ]
+    },
+    {
+        "id": "43428e95.c95d58",
+        "type": "debug",
+        "z": "9f80fd1f.3bd908",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "5c1c9dcd.546984",
+        "type": "comment",
+        "z": "9f80fd1f.3bd908",
+        "name": "### Retrieve data from OPC UA connector and replace variable ID with variable Name and puslish as Array ###",
+        "info": "",
+        "x": 500,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "d20bf630.ac7c98",
+        "type": "debug",
+        "z": "9f80fd1f.3bd908",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "50556ca2.120a8c",
+        "type": "influxdb batch",
+        "z": "9f80fd1f.3bd908",
+        "influxdb": "4ad3ce8d.582c5",
+        "precision": "",
+        "retentionPolicy": "",
+        "name": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "siemens",
+        "bucket": "edgedb",
+        "x": 1030,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "6d21e9a.2814a98",
+        "type": "split",
+        "z": "9f80fd1f.3bd908",
+        "name": "Split S7 Array",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": "1",
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 860,
+        "y": 480,
+        "wires": [
+            [
+                "38a14f21.7ff638"
+            ]
+        ]
+    },
+    {
+        "id": "5baa825a.490d5c",
+        "type": "comment",
+        "z": "9f80fd1f.3bd908",
+        "name": "### Connection error on MQTT nodes  please do the following steps ###",
+        "info": "",
+        "x": 310,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "6d514375.dddf04",
+        "type": "comment",
+        "z": "9f80fd1f.3bd908",
+        "name": "### 1. Open configuration node view ###",
+        "info": "",
+        "x": 220,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "fea16ee2.9b9548",
+        "type": "comment",
+        "z": "9f80fd1f.3bd908",
+        "name": "### 2. Double-Click on Databus node and select tab security###",
+        "info": "",
+        "x": 290,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "c946b764.ac1338",
+        "type": "comment",
+        "z": "9f80fd1f.3bd908",
+        "name": "### 3. Enter user 'edge' and password 'edge' ###",
+        "info": "",
+        "x": 240,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "3bea85d5.8166ea",
+        "type": "comment",
+        "z": "9f80fd1f.3bd908",
+        "name": "### 4. Click 'Finish' and deploy flows again ###",
+        "info": "",
+        "x": 240,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "32a48b8c.b60274",
+        "type": "comment",
+        "z": "9f80fd1f.3bd908",
+        "name": "### Please wait till 50 values are retrived so that you can see the results in the Influx UI view ###",
+        "info": "",
+        "x": 390,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "210128b3065fac4a",
+        "type": "function",
+        "z": "9f80fd1f.3bd908",
+        "d": true,
+        "name": "store data",
+        "func": "\nmsgoutput={}\n//msgoutput.measurement = msg.topic.split(';')[1].slice(2);\n/*msgoutput.payload = {\n    serverTimestamp: msg.serverTimestamp.toISOString(),\n    value: Math.round(msg.payload * 1e2)/ 1e2,\n    name: msgoutput.measurement,\n}*/\n\nBeta = [{\n    measurement: msg.topic.split(';')[1].slice(2),\n    fields:{\n        name: msg.topic.split(';')[1].slice(2),\n        value: Math.round(msg.payload * 1e2)/ 1e2,\n        qualitycode: false\n    },\n    timestamp: new Date()\n}]\n\nmsgoutput.payload = Beta;\n\nreturn msgoutput;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 880,
+        "wires": [
+            [
+                "832cbcfb18a82ae0",
+                "52a7853f068a139e",
+                "82dbdbd7e8fb888b"
+            ]
+        ]
+    },
+    {
+        "id": "373c3ebdfc8962a1",
+        "type": "debug",
+        "z": "9f80fd1f.3bd908",
+        "d": true,
+        "name": "opc output",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 730,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "832cbcfb18a82ae0",
+        "type": "debug",
+        "z": "9f80fd1f.3bd908",
+        "d": true,
+        "name": "output to influx",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 970,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "5bd466858aba7401",
+        "type": "inject",
+        "z": "9f80fd1f.3bd908",
+        "d": true,
+        "name": "powerdrive2-Temp",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=1;s=temperatur2;datatype=Float",
+        "payload": "1000",
+        "payloadType": "num",
+        "x": 190,
+        "y": 960,
+        "wires": [
+            [
+                "0b315d77e029d17d"
+            ]
+        ]
+    },
+    {
+        "id": "c0f358edb13dbafc",
+        "type": "inject",
+        "z": "9f80fd1f.3bd908",
+        "d": true,
+        "name": "powerdrive1",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=1;s=powerdrive1;datatype=Float",
+        "payload": "2000",
+        "payloadType": "num",
+        "x": 210,
+        "y": 920,
+        "wires": [
+            [
+                "0b315d77e029d17d"
+            ]
+        ]
+    },
+    {
+        "id": "97a9776eb04e43d6",
+        "type": "inject",
+        "z": "9f80fd1f.3bd908",
+        "d": true,
+        "name": "powerdrive2",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=1;s=powerdrive2;datatype=Float",
+        "payload": "2000",
+        "payloadType": "num",
+        "x": 210,
+        "y": 880,
+        "wires": [
+            [
+                "0b315d77e029d17d"
+            ]
+        ]
+    },
+    {
+        "id": "ec42e72ae8ffaf5a",
+        "type": "inject",
+        "z": "9f80fd1f.3bd908",
+        "d": true,
+        "name": "currentdrive1",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=1;s=currentdrive1;datatype=Float",
+        "payload": "1000",
+        "payloadType": "num",
+        "x": 200,
+        "y": 840,
+        "wires": [
+            [
+                "0b315d77e029d17d"
+            ]
+        ]
+    },
+    {
+        "id": "aa17ff32ee7ed707",
+        "type": "inject",
+        "z": "9f80fd1f.3bd908",
+        "d": true,
+        "name": "voltagedrive1",
+        "props": [
+            {
+                "p": "payload",
+                "v": "1000",
+                "vt": "num"
+            },
+            {
+                "p": "topic",
+                "v": "ns=1;s=voltagedrive1;datatype=Double",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=1;s=voltagedrive1;datatype=Double",
+        "payload": "1000",
+        "payloadType": "num",
+        "x": 200,
+        "y": 800,
+        "wires": [
+            [
+                "0b315d77e029d17d"
+            ]
+        ]
+    },
+    {
+        "id": "0b315d77e029d17d",
+        "type": "OpcUa-Client",
+        "z": "9f80fd1f.3bd908",
+        "d": true,
+        "endpoint": "1b70cc5299eb3297",
+        "action": "subscribe",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": "1",
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "folderName4PKI": "",
+        "name": "",
+        "x": 502,
+        "y": 859,
+        "wires": [
+            [
+                "210128b3065fac4a",
+                "373c3ebdfc8962a1"
+            ]
+        ]
+    },
+    {
+        "id": "52a7853f068a139e",
+        "type": "influxdb batch",
+        "z": "9f80fd1f.3bd908",
+        "d": true,
+        "influxdb": "4ad3ce8d.582c5",
+        "precision": "",
+        "retentionPolicy": "",
+        "name": "write_data_influxdb",
+        "database": "",
+        "retentionPolicyV18Flux": "",
+        "org": "siemens",
+        "bucket": "edgedb",
+        "x": 970,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "4233eb0a43d330f1",
+        "type": "comment",
+        "z": "9f80fd1f.3bd908",
+        "name": "### For testing - Receive simulated data from a OPC UA Server  ###",
+        "info": "",
+        "x": 340,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "82dbdbd7e8fb888b",
+        "type": "link out",
+        "z": "9f80fd1f.3bd908",
+        "d": true,
+        "name": "data_gen",
+        "mode": "link",
+        "links": [
+            "be3b1e8c001db67a",
+            "ecef8cf0f9a01c4b"
+        ],
+        "x": 905,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "1ac34de4909180b7",
+        "type": "comment",
+        "z": "7474ceb842992a1a",
+        "name": "Calculate Total Power Consumption",
+        "info": "",
+        "x": 800,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "24d36f2e8f195da4",
+        "type": "function",
+        "z": "7474ceb842992a1a",
+        "name": "Query-List",
+        "func": "var a ='\"name\"'\n//msg.query=\"select * from powerdrive1 where \"+a+\"='powerdrive1'\"\nmsg.query= `from(bucket: \"edgedb\")\n  |> range(start: -5h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"powerdrive1\")\n  |> last()`;\nreturn msg; \n/*\nCLI-Funktionen f?r die Influxdb (Auszug)\n\"select * from data1\"\n//Zeigt alle Daten im measuurement an\nSELECT * FROM data where time > '2018-08-09T08:20:39.96Z' and time <= now()\n//Anzeige der measuremebts in einem bestimmten Zeitraum\nselect * from data where value > 80 and value < 85 \n//Filterung der Daten nach Value \n*/",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 270,
+        "y": 160,
+        "wires": [
+            [
+                "a3698549a82e281c"
+            ]
+        ]
+    },
+    {
+        "id": "d91e47171d708254",
+        "type": "function",
+        "z": "7474ceb842992a1a",
+        "name": "Query-List",
+        "func": "var a ='\"name\"'\n//msg.query=\"select * from powerdrive2 where \"+a+\"='powerdrive2'\"\nmsg.query= `from(bucket: \"edgedb\")\n  |> range(start: -5m)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"powerdrive2\")\n  |> last()`;\nreturn msg; \n\n\n/*\nCLI-Funktionen f?r die Influxdb (Auszug)\n\"select * from data1\"\n//Zeigt alle Daten im measuurement an\nSELECT * FROM data where time > '2018-08-09T08:20:39.96Z' and time <= now()\n//Anzeige der measuremebts in einem bestimmten Zeitraum\nselect * from data where value > 80 and value < 85 \n//Filterung der Daten nach Value \n*/\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 220,
+        "wires": [
+            [
+                "e72876fc847d9707"
+            ]
+        ]
+    },
+    {
+        "id": "e72876fc847d9707",
+        "type": "influxdb in",
+        "z": "7474ceb842992a1a",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "influxdb_query_power2",
+        "query": "",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "siemens",
+        "x": 490,
+        "y": 220,
+        "wires": [
+            [
+                "14b0503b4d11a1f1",
+                "d324e4d979f80857"
+            ]
+        ]
+    },
+    {
+        "id": "14b0503b4d11a1f1",
+        "type": "function",
+        "z": "7474ceb842992a1a",
+        "name": "collect_last_power_values",
+        "func": "context.data = context.data || {};\n\nswitch (msg.payload[0]._measurement) {\n    case \"powerdrive1\":\n        context.data.power1 = msg.payload[2]._value;\n        msg = null;\n        break;\n    case \"powerdrive2\":\n        context.data.power2 = msg.payload[2]._value;\n        msg = null;\n        break;\n    default:\n        msg = null;\n        break;\n}\n\nif (context.data.power1 != null && context.data.power2 != null) {\n    msg2 = {};\n    msg2 = context.data;\n\n    context.data = null;\n    return msg2;\n} else {\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 220,
+        "wires": [
+            [
+                "16a3f64e6e4cb01f",
+                "fd2ecb26787fa544"
+            ]
+        ]
+    },
+    {
+        "id": "797b84ead1704e99",
+        "type": "function",
+        "z": "7474ceb842992a1a",
+        "name": "join_and_write_power_Influxdb",
+        "func": "total = msg.payload;\n\nBeta = [{\n    measurement: \"GEN_KPI_TotalPower\",\n    fields: {\n        name: \"TotalPower\",\n        value: total,\n        //weitereTags: -100 //(optional) nur 4 Datatypes sind in der Influxdb akzeptiert: Int,Float,String, Bool\n    },\n    timestamp: new Date()\n}]\n//    Arr.push(Beta);\n//}\n\nmsg.payload = Beta;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1270,
+        "y": 220,
+        "wires": [
+            [
+                "5d341f7d40ab6696",
+                "cf316c5feaf54b75"
+            ]
+        ]
+    },
+    {
+        "id": "cf316c5feaf54b75",
+        "type": "influxdb batch",
+        "z": "7474ceb842992a1a",
+        "influxdb": "4ad3ce8d.582c5",
+        "precision": "",
+        "retentionPolicy": "",
+        "name": "influxdb_write",
+        "database": "",
+        "retentionPolicyV18Flux": "",
+        "org": "siemens",
+        "bucket": "edgedb",
+        "x": 1520,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "a3698549a82e281c",
+        "type": "influxdb in",
+        "z": "7474ceb842992a1a",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "influxdb_query_power1",
+        "query": "",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "siemens",
+        "x": 490,
+        "y": 160,
+        "wires": [
+            [
+                "14b0503b4d11a1f1",
+                "d324e4d979f80857"
+            ]
+        ]
+    },
+    {
+        "id": "ecef8cf0f9a01c4b",
+        "type": "link in",
+        "z": "7474ceb842992a1a",
+        "name": "",
+        "links": [
+            "38a14f21.7ff638",
+            "82dbdbd7e8fb888b"
+        ],
+        "x": 135,
+        "y": 220,
+        "wires": [
+            [
+                "24d36f2e8f195da4",
+                "d91e47171d708254"
+            ]
+        ]
+    },
+    {
+        "id": "16a3f64e6e4cb01f",
+        "type": "function",
+        "z": "7474ceb842992a1a",
+        "name": "sum_total_power",
+        "func": "var arr = [];\nvar mean = 0;\nvar sum = 0;\n\narr = Object.keys(msg).map(function(key) {\n    return msg[key]\n})\narr.splice(-1, 1)\n\nfor (var i = 0; i < arr.length; i++) {\n    sum = sum + arr[i];\n}\n// mean = sum / arr.length; \n\nmsg2 = {};\n//msg2.payload = (arr[0] + arr[1] + arr[2]) / arr.length; \n\nmsg2.payload = sum;\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 220,
+        "wires": [
+            [
+                "797b84ead1704e99"
+            ]
+        ]
+    },
+    {
+        "id": "5d341f7d40ab6696",
+        "type": "debug",
+        "z": "7474ceb842992a1a",
+        "name": "KPI-Power",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1510,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "fd2ecb26787fa544",
+        "type": "debug",
+        "z": "7474ceb842992a1a",
+        "name": "Last Power Values",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1010,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "8b8c3adc7921a640",
+        "type": "debug",
+        "z": "7474ceb842992a1a",
+        "name": "KPI-Power",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "d324e4d979f80857",
+        "type": "function",
+        "z": "7474ceb842992a1a",
+        "name": "collect_last_power_values",
+        "func": "context.data = context.data || {};\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 380,
+        "wires": [
+            [
+                "8b8c3adc7921a640"
+            ]
+        ]
+    },
+    {
+        "id": "c17d056bfe661bfb",
+        "type": "influxdb in",
+        "z": "1ff02d49d32ca74f",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "query",
+        "query": "",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "siemens",
+        "x": 770,
+        "y": 140,
+        "wires": [
+            [
+                "97ada85a60986d3d"
+            ]
+        ]
+    },
+    {
+        "id": "be3b1e8c001db67a",
+        "type": "link in",
+        "z": "1ff02d49d32ca74f",
+        "name": "input_raw_data",
+        "links": [
+            "38a14f21.7ff638",
+            "82dbdbd7e8fb888b"
+        ],
+        "x": 185,
+        "y": 160,
+        "wires": [
+            [
+                "be65079f10c41189"
+            ]
+        ]
+    },
+    {
+        "id": "efd211984f39259b",
+        "type": "function",
+        "z": "1ff02d49d32ca74f",
+        "name": "GET_LAST_ENTRIES",
+        "func": "let msgQueryGet = {}\nmsgQueryGet.measurement = msg.payload.measurement\n\nmsgQueryGet.query= `from(bucket: \"edgedb\")\n                      |> range(start: -5h)\n                      |> filter(fn: (r) => r[\"_measurement\"] == \"${msgQueryGet.measurement}\")\n                      |> filter(fn: (r) => r[\"_field\"] == \"value\")\n                      |> sort(columns: [\"_time\"], desc: true)\n                      |> limit(n: 50)\n                      |> group()`;\nreturn msgQueryGet;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 140,
+        "wires": [
+            [
+                "c17d056bfe661bfb"
+            ]
+        ]
+    },
+    {
+        "id": "22c5dc214c72eeb6",
+        "type": "mqtt out",
+        "z": "1ff02d49d32ca74f",
+        "name": "StandardKpis",
+        "topic": "StandardKpis",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "1ab7e97a.bda1e7",
+        "x": 1180,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "97ada85a60986d3d",
+        "type": "json",
+        "z": "1ff02d49d32ca74f",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 910,
+        "y": 140,
+        "wires": [
+            [
+                "98936ecf14b1220d",
+                "22c5dc214c72eeb6"
+            ]
+        ]
+    },
+    {
+        "id": "98936ecf14b1220d",
+        "type": "debug",
+        "z": "1ff02d49d32ca74f",
+        "name": "response_get",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "ad4f6d543b736f83",
+        "type": "comment",
+        "z": "1ff02d49d32ca74f",
+        "name": "PowerDrive1 and PowerDrive2 last 50 entries",
+        "info": "",
+        "x": 550,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "b92d4778a8765068",
+        "type": "influxdb in",
+        "z": "1ff02d49d32ca74f",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "query",
+        "query": "",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "siemens",
+        "x": 730,
+        "y": 340,
+        "wires": [
+            [
+                "da5a71e0e50b6a2d"
+            ]
+        ]
+    },
+    {
+        "id": "3cc3c6c7bd32b8fd",
+        "type": "debug",
+        "z": "1ff02d49d32ca74f",
+        "name": "mqtt output",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "1a526d08fd3a5196",
+        "type": "mqtt out",
+        "z": "1ff02d49d32ca74f",
+        "name": "Mean",
+        "topic": "Mean",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "1ab7e97a.bda1e7",
+        "x": 1290,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "bcc37a8b4d68d059",
+        "type": "comment",
+        "z": "1ff02d49d32ca74f",
+        "name": "VoltageDrive3 dynamic sample of entries",
+        "info": "",
+        "x": 560,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "98d95adec7f11faf",
+        "type": "influxdb in",
+        "z": "1ff02d49d32ca74f",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "query",
+        "query": "",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "siemens",
+        "x": 750,
+        "y": 500,
+        "wires": [
+            [
+                "da5a71e0e50b6a2d"
+            ]
+        ]
+    },
+    {
+        "id": "8e801bd99a2e77b6",
+        "type": "comment",
+        "z": "1ff02d49d32ca74f",
+        "name": "CurrentDrive3  dynamic sample of entries",
+        "info": "",
+        "x": 560,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "be65079f10c41189",
+        "type": "switch",
+        "z": "1ff02d49d32ca74f",
+        "name": "filter",
+        "property": "payload.measurement",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "powerdrive1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "powerdrive2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "voltagedrive3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "currentdrive3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 290,
+        "y": 160,
+        "wires": [
+            [
+                "efd211984f39259b"
+            ],
+            [
+                "efd211984f39259b"
+            ],
+            [
+                "50952f79f64eb614"
+            ],
+            [
+                "46b6e48d1b12352a"
+            ]
+        ]
+    },
+    {
+        "id": "da5a71e0e50b6a2d",
+        "type": "function",
+        "z": "1ff02d49d32ca74f",
+        "name": "manual_join",
+        "func": "var tempo_cd3_batch = context.get('cd3_batch')||[];\nvar tempo_vd3_batch = context.get('vd3_batch')||[];\n\nfunction build_analytics_object(){\n    let data_obj = {\n        sample_number : msg.SampleNumber,\n        current_drive3_batch : tempo_cd3_batch,\n        voltage_drive3_batch : tempo_vd3_batch,\n    }\n    return data_obj\n}\n\n\nif (msg.measurement == 'currentdrive3'){\n    tempo_cd3_batch = msg.payload\n    context.set('cd3_batch',tempo_cd3_batch)\n    \n}\nelse if (msg.measurement == 'voltagedrive3') {\n    tempo_vd3_batch = msg.payload\n    context.set('vd3_batch',tempo_vd3_batch)\n}\n\nif (tempo_cd3_batch.length > 0 && tempo_vd3_batch.length >0 ) {\n    let py_obj={}\n    py_obj.payload = build_analytics_object()\n    tempo_cd3_batch = []\n    tempo_vd3_batch = []\n    context.set('cd3_batch', tempo_cd3_batch)\n    context.set('vd3_batch', tempo_vd3_batch)\n    \n    return py_obj\n    \n}\n\nelse{\n    return\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 400,
+        "wires": [
+            [
+                "3cc3c6c7bd32b8fd",
+                "1a526d08fd3a5196"
+            ]
+        ]
+    },
+    {
+        "id": "7bce0dac6af8be62",
+        "type": "mqtt in",
+        "z": "1ff02d49d32ca74f",
+        "name": "",
+        "topic": "StandardKpiResult",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1ab7e97a.bda1e7",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 130,
+        "y": 820,
+        "wires": [
+            [
+                "78ccf7c99d23ca4d"
+            ]
+        ]
+    },
+    {
+        "id": "bbcadf72240b8428",
+        "type": "debug",
+        "z": "1ff02d49d32ca74f",
+        "name": "response standard kpis",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "78ccf7c99d23ca4d",
+        "type": "json",
+        "z": "1ff02d49d32ca74f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 510,
+        "y": 820,
+        "wires": [
+            [
+                "8f26ae08dabcb38e"
+            ]
+        ]
+    },
+    {
+        "id": "8f26ae08dabcb38e",
+        "type": "function",
+        "z": "1ff02d49d32ca74f",
+        "name": "store data",
+        "func": "let my_payload = {};\nmy_payload = msg.payload;\nlet output_standardkpis = {}\noutput_standardkpis.measurement = my_payload.name.toUpperCase() + '_STANDARD_KPIS'\noutput_standardkpis.payload = {\n    mean: Math.round(my_payload.mean_result * 1e2)/ 1e2,\n    median: Math.round(my_payload.median_result * 1e2)/ 1e2,\n    stddev: Math.round(my_payload.stddev_result * 1e2)/ 1e2,\n    name: my_payload.name,\n}\n\nreturn output_standardkpis;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 820,
+        "wires": [
+            [
+                "2cdca5c6f88b0194",
+                "bbcadf72240b8428"
+            ]
+        ]
+    },
+    {
+        "id": "2cdca5c6f88b0194",
+        "type": "influxdb out",
+        "z": "1ff02d49d32ca74f",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "write_influxdb",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "",
+        "retentionPolicyV18Flux": "",
+        "org": "siemens",
+        "bucket": "edgedb",
+        "x": 1200,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "d4be09607b515978",
+        "type": "mqtt in",
+        "z": "1ff02d49d32ca74f",
+        "name": "",
+        "topic": "MeanResult",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "1ab7e97a.bda1e7",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 110,
+        "y": 960,
+        "wires": [
+            [
+                "186ea90f99e29d7b"
+            ]
+        ]
+    },
+    {
+        "id": "8153c1341ba5dcd2",
+        "type": "debug",
+        "z": "1ff02d49d32ca74f",
+        "name": "response mean",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1210,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "186ea90f99e29d7b",
+        "type": "json",
+        "z": "1ff02d49d32ca74f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 510,
+        "y": 960,
+        "wires": [
+            [
+                "742190e9e7e62ef6"
+            ]
+        ]
+    },
+    {
+        "id": "742190e9e7e62ef6",
+        "type": "function",
+        "z": "1ff02d49d32ca74f",
+        "name": "store data",
+        "func": "my_payload = {};\nmy_payload = msg.payload;\noutput_pd1_mean = {}\noutput_pd1_mean.measurement = my_payload.name.toUpperCase()\noutput_pd1_mean.payload = {\n    value: Math.round(my_payload.power_mean_result * 1e2)/ 1e2,\n    name: my_payload.name,\n}\n\nreturn output_pd1_mean;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 870,
+        "y": 960,
+        "wires": [
+            [
+                "b1e47db6fb4093e9",
+                "8153c1341ba5dcd2"
+            ]
+        ]
+    },
+    {
+        "id": "b1e47db6fb4093e9",
+        "type": "influxdb out",
+        "z": "1ff02d49d32ca74f",
+        "influxdb": "4ad3ce8d.582c5",
+        "name": "write_influxdb",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "",
+        "retentionPolicyV18Flux": "",
+        "org": "siemens",
+        "bucket": "edgedb",
+        "x": 1200,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "a18ffe23f5be216a",
+        "type": "comment",
+        "z": "1ff02d49d32ca74f",
+        "name": "Data Analytics Results",
+        "info": "",
+        "x": 540,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "50952f79f64eb614",
+        "type": "function",
+        "z": "1ff02d49d32ca74f",
+        "name": "GET_LAST_ENTRIES",
+        "func": "let msgQueryGet = {}\nmsgQueryGet.measurement = msg.payload.measurement\n\nmsgQueryGet.query= `from(bucket: \"edgedb\")\n                      |> range(start: -5h)\n                      |> filter(fn: (r) => r[\"_measurement\"] == \"${msgQueryGet.measurement}\")\n                      |> filter(fn: (r) => r[\"_field\"] == \"value\")\n                      |> sort(columns: [\"_time\"], desc: true)\n                      |> limit(n: 50)\n                      |> group()`;\nreturn msgQueryGet;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 340,
+        "wires": [
+            [
+                "b92d4778a8765068"
+            ]
+        ]
+    },
+    {
+        "id": "46b6e48d1b12352a",
+        "type": "function",
+        "z": "1ff02d49d32ca74f",
+        "name": "GET_LAST_ENTRIES",
+        "func": "let msgQueryGet = {}\nmsgQueryGet.measurement = msg.payload.measurement\n\nmsgQueryGet.query= `from(bucket: \"edgedb\")\n                      |> range(start: -5h)\n                      |> filter(fn: (r) => r[\"_measurement\"] == \"${msgQueryGet.measurement}\")\n                      |> filter(fn: (r) => r[\"_field\"] == \"value\")\n                      |> sort(columns: [\"_time\"], desc: true)\n                      |> limit(n: 50)\n                      |> group()`;\nreturn msgQueryGet;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 500,
+        "wires": [
+            [
+                "98d95adec7f11faf"
+            ]
+        ]
+    }
+]
