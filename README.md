@@ -4,6 +4,7 @@ Creating a first Industrial Edge App on a development environment to deploy it t
 
 - [My first Industrial Edge App - App Developer Guide](#my-first-industrial-edge-app---app-developer-guide)
   - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
   - [Description](#description)
   - [Documentation](#documentation)
   - [Contribution](#contribution)
@@ -13,6 +14,10 @@ Creating a first Industrial Edge App on a development environment to deploy it t
 ## Prerequisites
 
 Prerequisites are in the App Developer Guide which is available on [industrial-edge.io](https://industrial-edge.io/developer/index.html). It contains description of the requirements as well as the step-by-step description how to work with this Developer Guide repository.
+
+## Installation
+
+If you would like to run the solution of this app you need to rename all files called "Dockerfile.example" to Dockerfile. These Dockerfiles are just an example how you could implement it.
 
 ## Description
 
