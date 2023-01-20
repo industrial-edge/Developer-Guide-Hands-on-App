@@ -46,7 +46,7 @@ services:
         max-file: "2"                   # only 2 files created before rolling mechanism applies
       driver: json-file  
     ports:                              # expose of ports and publish
-      - "8086:8086"                     # map containers port 8086 to host's port 8086    
+      - "38086:8086"                     # map containers port 8086 to host's port 8086    
     volumes:                            # mount volume from host
       - db-backup:/var/lib/influxdb     # mount named volume 'db-backup' to host's path to /var/lib/influxdb
     healthcheck:
