@@ -1,0 +1,547 @@
+{
+ "meta": {
+  "version": "1",
+  "type": "dashboard",
+  "name": "Drive KPI Calc Dashboard-Template",
+  "description": "template created from dashboard: Drive KPI Calc Dashboard"
+ },
+ "content": {
+  "data": {
+   "type": "dashboard",
+   "attributes": {
+    "name": "Drive KPI Calc Dashboard",
+    "description": "Factory Line Drives Overview"
+   },
+   "relationships": {
+    "label": {
+     "data": []
+    },
+    "cell": {
+     "data": [
+      {
+       "type": "cell",
+       "id": "0a27ee95195b5000"
+      },
+      {
+       "type": "cell",
+       "id": "0a27ee951adb5000"
+      },
+      {
+       "type": "cell",
+       "id": "0a27ee951b1b5000"
+      },
+      {
+       "type": "cell",
+       "id": "0a27ee951b9b5000"
+      },
+      {
+       "type": "cell",
+       "id": "0a27ee951bdb5000"
+      }
+     ]
+    },
+    "variable": {
+     "data": []
+    }
+   }
+  },
+  "included": [
+   {
+    "id": "0a27ee95195b5000",
+    "type": "cell",
+    "attributes": {
+     "x": 0,
+     "y": 0,
+     "w": 12,
+     "h": 3
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "0a27ee95195b5000"
+      }
+     }
+    }
+   },
+   {
+    "id": "0a27ee951adb5000",
+    "type": "cell",
+    "attributes": {
+     "x": 0,
+     "y": 7,
+     "w": 6,
+     "h": 5
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "0a27ee951adb5000"
+      }
+     }
+    }
+   },
+   {
+    "id": "0a27ee951b1b5000",
+    "type": "cell",
+    "attributes": {
+     "x": 0,
+     "y": 3,
+     "w": 6,
+     "h": 4
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "0a27ee951b1b5000"
+      }
+     }
+    }
+   },
+   {
+    "id": "0a27ee951b9b5000",
+    "type": "cell",
+    "attributes": {
+     "x": 6,
+     "y": 7,
+     "w": 6,
+     "h": 5
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "0a27ee951b9b5000"
+      }
+     }
+    }
+   },
+   {
+    "id": "0a27ee951bdb5000",
+    "type": "cell",
+    "attributes": {
+     "x": 6,
+     "y": 3,
+     "w": 6,
+     "h": 4
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "0a27ee951bdb5000"
+      }
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "0a27ee95195b5000",
+    "attributes": {
+     "name": "Name this Cell",
+     "properties": {
+      "shape": "chronograf-v2",
+      "type": "markdown",
+      "note": "# Power Drive KPI Dashboard\n---\n**Designed to have an overview about the drives in the factory line**\n\nCustomer Dashboard"
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "0a27ee951adb5000",
+    "attributes": {
+     "name": "KPI (Mean,Median,Standard dev) calculation for the PowerDrive2",
+     "properties": {
+      "shape": "chronograf-v2",
+      "queries": [
+       {
+        "text": "from(bucket: \"edgedb\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"POWERDRIVE2_STANDARD_KPIS\")\n  |> filter(fn: (r) => r[\"_field\"] == \"mean\" or r[\"_field\"] == \"median\" or r[\"_field\"] == \"stddev\")\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\n  |> yield(name: \"last\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "axes": {
+       "x": {
+        "bounds": [
+         "",
+         ""
+        ],
+        "label": "",
+        "prefix": "",
+        "suffix": "",
+        "base": "10",
+        "scale": "linear"
+       },
+       "y": {
+        "bounds": [
+         "0",
+         "1000"
+        ],
+        "label": "",
+        "prefix": "",
+        "suffix": "",
+        "base": "10",
+        "scale": "linear"
+       }
+      },
+      "type": "xy",
+      "staticLegend": {
+       "colorizeRows": true,
+       "heightRatio": 0.18478260869565216,
+       "opacity": 1,
+       "orientationThreshold": 100000000,
+       "widthRatio": 1
+      },
+      "geom": "line",
+      "colors": [
+       {
+        "id": "e7d7d0aa-7f11-4661-a9c6-f637d8c2e33a",
+        "type": "scale",
+        "hex": "#8F8AF4",
+        "name": "Do Androids Dream of Electric Sheep?",
+        "value": 0
+       },
+       {
+        "id": "5634dc28-b475-44d1-b420-26c7d518abcd",
+        "type": "scale",
+        "hex": "#A51414",
+        "name": "Do Androids Dream of Electric Sheep?",
+        "value": 0
+       },
+       {
+        "id": "235f2f13-9149-4857-a27b-f93c03e36f65",
+        "type": "scale",
+        "hex": "#F4CF31",
+        "name": "Do Androids Dream of Electric Sheep?",
+        "value": 0
+       }
+      ],
+      "note": "",
+      "showNoteWhenEmpty": false,
+      "xColumn": "_time",
+      "generateXAxisTicks": [],
+      "xTotalTicks": 0,
+      "xTickStart": 0,
+      "xTickStep": 0,
+      "yColumn": "_value",
+      "generateYAxisTicks": [],
+      "yTotalTicks": 0,
+      "yTickStart": 0,
+      "yTickStep": 0,
+      "shadeBelow": true,
+      "position": "overlaid",
+      "timeFormat": "HH:mm:ss",
+      "hoverDimension": "auto",
+      "legendColorizeRows": true,
+      "legendHide": false,
+      "legendOpacity": 1,
+      "legendOrientationThreshold": 100000000
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "0a27ee951b1b5000",
+    "attributes": {
+     "name": "Total Power Consumption",
+     "properties": {
+      "shape": "chronograf-v2",
+      "type": "gauge",
+      "queries": [
+       {
+        "text": "from(bucket: \"edgedb\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"GEN_KPI_TotalPower\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\n  |> yield(name: \"last\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "prefix": "",
+      "tickPrefix": "",
+      "suffix": "",
+      "tickSuffix": "W",
+      "colors": [
+       {
+        "id": "0",
+        "type": "min",
+        "hex": "#7CE490",
+        "name": "honeydew",
+        "value": 0
+       },
+       {
+        "id": "1",
+        "type": "max",
+        "hex": "#BF3D5E",
+        "name": "ruby",
+        "value": 2000
+       }
+      ],
+      "decimalPlaces": {
+       "isEnforced": true,
+       "digits": 2
+      },
+      "note": "",
+      "showNoteWhenEmpty": false
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "0a27ee951b9b5000",
+    "attributes": {
+     "name": "Power Drive List",
+     "properties": {
+      "shape": "chronograf-v2",
+      "type": "table",
+      "queries": [
+       {
+        "text": "from(bucket: \"edgedb\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"POWERDRIVE1_STANDARD_KPIS\" or r[\"_measurement\"] == \"POWERDRIVE2_STANDARD_KPIS\" or r[\"_measurement\"] == \"POWERDRIVE3_MEAN\")\n  |> filter(fn: (r) => r[\"_field\"] == \"mean\" or r[\"_field\"] == \"median\" or r[\"_field\"] == \"stddev\")\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\n  |> yield(name: \"last\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "colors": [
+       {
+        "id": "base",
+        "type": "text",
+        "hex": "#F48D38",
+        "name": "tiger",
+        "value": 0
+       }
+      ],
+      "tableOptions": {
+       "verticalTimeAxis": true,
+       "sortBy": {
+        "internalName": "",
+        "displayName": "",
+        "visible": false
+       },
+       "wrapping": "",
+       "fixFirstColumn": false
+      },
+      "fieldOptions": [
+       {
+        "internalName": "_start",
+        "displayName": "Start time",
+        "visible": false
+       },
+       {
+        "internalName": "_stop",
+        "displayName": "Stop time",
+        "visible": false
+       },
+       {
+        "internalName": "_time",
+        "displayName": "Time",
+        "visible": true
+       },
+       {
+        "internalName": "_value",
+        "displayName": "Value",
+        "visible": true
+       },
+       {
+        "internalName": "_measurement",
+        "displayName": "Measurement name",
+        "visible": true
+       },
+       {
+        "internalName": "_field",
+        "displayName": "Field",
+        "visible": true
+       }
+      ],
+      "timeFormat": "YYYY/MM/DD HH:mm:ss",
+      "decimalPlaces": {
+       "isEnforced": false,
+       "digits": 2
+      },
+      "note": "",
+      "showNoteWhenEmpty": false
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "0a27ee951bdb5000",
+    "attributes": {
+     "name": "Total Power - Mean",
+     "properties": {
+      "shape": "chronograf-v2",
+      "queries": [
+       {
+        "text": "from(bucket: \"edgedb\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"GEN_KPI_TotalPower\")\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "axes": {
+       "x": {
+        "bounds": [
+         "",
+         ""
+        ],
+        "label": "",
+        "prefix": "",
+        "suffix": "",
+        "base": "10",
+        "scale": "linear"
+       },
+       "y": {
+        "bounds": [
+         "0",
+         "2000"
+        ],
+        "label": "Power",
+        "prefix": "",
+        "suffix": "",
+        "base": "10",
+        "scale": "linear"
+       }
+      },
+      "type": "line-plus-single-stat",
+      "staticLegend": {
+       "colorizeRows": true,
+       "opacity": 1,
+       "orientationThreshold": -1,
+       "widthRatio": 1
+      },
+      "colors": [
+       {
+        "id": "base",
+        "type": "text",
+        "hex": "#32B08C",
+        "name": "viridian",
+        "value": 0
+       },
+       {
+        "id": "8002dfd3-b78a-4a45-9d86-c0953ab11a36",
+        "type": "scale",
+        "hex": "#DA6FF1",
+        "name": "Ectoplasm",
+        "value": 0
+       },
+       {
+        "id": "36cb054f-8804-44f9-ae47-cdb4ec14273f",
+        "type": "scale",
+        "hex": "#00717A",
+        "name": "Ectoplasm",
+        "value": 0
+       },
+       {
+        "id": "4e5cc096-6648-4256-b4bc-c77fcd7897de",
+        "type": "scale",
+        "hex": "#ACFF76",
+        "name": "Ectoplasm",
+        "value": 0
+       }
+      ],
+      "prefix": "",
+      "suffix": "W",
+      "decimalPlaces": {
+       "isEnforced": true,
+       "digits": 0
+      },
+      "note": "",
+      "showNoteWhenEmpty": false,
+      "xColumn": "_time",
+      "generateXAxisTicks": [],
+      "xTotalTicks": 0,
+      "xTickStart": 0,
+      "xTickStep": 0,
+      "yColumn": "_value",
+      "generateYAxisTicks": [],
+      "yTotalTicks": 0,
+      "yTickStart": 0,
+      "yTickStep": 0,
+      "shadeBelow": true,
+      "position": "overlaid",
+      "timeFormat": "HH:mm:ss",
+      "hoverDimension": "auto",
+      "legendColorizeRows": true,
+      "legendHide": false,
+      "legendOpacity": 1,
+      "legendOrientationThreshold": -1
+     }
+    }
+   }
+  ]
+ },
+ "labels": []
+}

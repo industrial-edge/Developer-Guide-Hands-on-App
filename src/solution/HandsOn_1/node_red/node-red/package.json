@@ -1,0 +1,23 @@
+{
+    "name": "node-red-docker",
+    "version": "2.2.2",
+    "description": "A visual tool for wiring the Internet of Things",
+    "homepage": "http://nodered.org",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/node-red/node-red-docker.git"
+    },
+    "main": "node_modules/node-red/red/red.js",
+    "scripts": {
+        "start": "node $NODE_OPTIONS node_modules/node-red/red.js -v $FLOWS"
+    },
+    "dependencies": {
+        "node-red": "2.2.2",
+        "node-red-contrib-influxdb": "0.6.1",
+        "node-red-contrib-opcua": "0.2.289"
+    },
+    "engines": {
+        "node": ">=12"
+    }
+}

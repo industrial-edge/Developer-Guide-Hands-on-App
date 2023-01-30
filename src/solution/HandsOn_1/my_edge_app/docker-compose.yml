@@ -1,0 +1,66 @@
+### Docker Compose File for my Industrial Edge App ###
+# This docker-compose file creates a preconfigured 
+# * Data Analytics container based in Python with Mqtt Connection
+# * InfluxDB Container for Storage of Time Series data and visualization
+
+version: '2.4' # docker-compose version is set to 2.4 
+
+services:
+
+###### DATA-ANALYTICS ######
+  data-analytics:
+    build:                              # Configuration applied at build time
+      context: ./data-analytics         # Relative Path to data-analytics from this docker-compose file containing Dockerfile
+      args:                             # Args variables available only at build-time
+        BASE_IMAGE: $BASE_IMAGE         # 
+        http_proxy: $http_proxy         # Proxy url's from environment
+        https_proxy: $https_proxy
+    image: data-analytics:v0.0.1        # Name of the built image
+    container_name: data-analytics      # Name of the data-analytics container
+    mem_limit: 350m
+    restart: unless-stopped             # always restarts (see overview page 12 Industrial Edge Developer Guide)
+    environment:                        # Environment variables available at container run-time
+      http_proxy: $http_proxy           # Proxy url's from environment
+      https_proxy: $https_proxy
+    logging:                            # allow logging
+      options:                          # we use best pactice here as limiting file size and rolling mechanism
+        max-size: "10m"                 # File size is 10MB
+        max-file: "2"                   # only 2 files created before rolling mechanism applies
+    networks:                           # define networks connected to container 'data-analytics' 
+      proxy-redirect:                   # Name of the network
+
+##### INFLUXDB ######
+  influxdb:
+    image: influxdb:$INFLUXDB_VERSION   # Define image to pull from docker hub if not already on your machine available
+    container_name: influxdb            # Name of the influx-db container
+    restart: unless-stopped             # always restarts (see overview page 12 Industrial Edge Developer Guide) 
+    mem_limit: 1400m
+    environment:                        # Environment variables available at container run-time
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=edge
+      - DOCKER_INFLUXDB_INIT_PASSWORD=edgeadmin
+      - DOCKER_INFLUXDB_INIT_ORG=siemens
+      - DOCKER_INFLUXDB_INIT_BUCKET=edgedb
+      - DOCKER_INFLUXDB_INIT_RETENTION=1w
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=testtoken
+    logging:                            # allow logging
+      options:                          # we use best pactice here as limiting file size and rolling mechanism
+        max-size: "10m"                 # File size is 10MB
+        max-file: "2"                   # only 2 files created before rolling mechanism applies
+    volumes:                            # mount volume from host
+      - db-backup:/var/lib/influxdb     # mount named volume 'db-backup' to host's path to /var/lib/influxdb
+    ports:                              # expose of ports and publish
+      - "38086:8086"                     # map containers port 8086 to host's port 38086
+    networks:                           # define networks connected to container 'influxdb' 
+      proxy-redirect:                   # Name of the network
+
+###### NETWORK CONFIG ######
+networks:                           # Network interface configuration
+  proxy-redirect:                   # Reference 'proxy-redirect' as predefined network
+    external: 
+      name: proxy-redirect
+    driver: bridge
+
+###### VOLUMES ######
+volumes:                            # Volumes for containers
+  db-backup:
