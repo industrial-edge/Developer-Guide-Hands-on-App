@@ -13,7 +13,7 @@ Creating a first Industrial Edge App on a development environment to deploy it t
 
 ## Prerequisites
 
-Prerequisites are in the App Developer Guide which is available on [industrial-edge.io](https://docs.eu1.edge.siemens.cloud/developer/00_Overview.html). It contains description of the requirements as well as the step-by-step description how to work with this Developer Guide repository.
+Prerequisites are in the App Developer Guide which is available on [industrial-edge.io](https://docs.eu1.edge.siemens.cloud/develop_an_application/developer_guide/00_Overview.html). It contains description of the requirements as well as the step-by-step description how to work with this Developer Guide repository.
 
 ## Installation
 
@@ -36,7 +36,7 @@ The app contains three parts – the connectivity to collect the data from the O
 
 ## Documentation
 
-- Here is a link to the [industrial-edge.io](https://industrial-edge.io/developer/index.html) where the App Developer Guide of this application example can be found.
+- Here is a link to the [industrial-edge.io](https://docs.eu1.edge.siemens.cloud/develop_an_application/developer_guide/00_Overview.html) where the App Developer Guide of this application example can be found.
 - You can find further documentation and help in the following links
   - [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/#/documentation)
   - [Industrial Edge Forum](https://www.siemens.com/industrial-edge-forum)
