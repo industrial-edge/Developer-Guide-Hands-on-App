@@ -53,7 +53,12 @@
         "tls": "",
         "influxdbVersion": "2.0",
         "url": "http://influxdb:8086",
-        "rejectUnauthorized": false
+        "rejectUnauthorized": false,
+        "credentials": {
+            "username": "",
+            "password": "",
+            "token": "testtoken"
+        }
     },
     {
         "id": "99d8c9c3d94c327e",
