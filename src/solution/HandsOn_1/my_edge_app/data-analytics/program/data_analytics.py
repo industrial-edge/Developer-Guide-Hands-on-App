@@ -1,7 +1,5 @@
-# Copyright 2021 Siemens AG
-# This file is subject to the terms and conditions of the MIT License.
-# See LICENSE file in the top-level directory.
-
+# SPDX-FileCopyrightText: 2021 Siemens AG
+# SPDX-License-Identifier: MIT
 """Module Data Analytics.
 
 This module consists of DataGenerator class and also the function to generate
